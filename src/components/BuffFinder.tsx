@@ -158,15 +158,7 @@ export function BuffFinder() {
 
       {/* results */}
       <section>
-        {selected.length === 0 ? (
-          <div className="panel p-10 text-center">
-            <h3 className="text-lg text-primary text-glow mb-2">Pick the buffs you want</h3>
-            <p className="text-muted-foreground">
-              Select one or more buffs from the menu. We'll search every cooking pot recipe and
-              show the pairs that grant them.
-            </p>
-          </div>
-        ) : results.length === 0 ? (
+        {selected.length === 0 ? null : results.length === 0 ? (
           <div className="panel p-10 text-center">
             <p className="text-muted-foreground">
               No recipe combines all of those buffs. Try switching to <em className="text-accent">Any of</em>.
