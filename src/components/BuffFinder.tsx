@@ -18,21 +18,26 @@ export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [matchAll, setMatchAll] = useState(true);
 
-  const grouped = useMemo(() => {
-    const g = new Map<string, string[]>();
-    for (const k of ALL_BUFF_KEYS) {
-      const cat = categorize(k);
-      if (!g.has(cat)) g.set(cat, []);
-      g.get(cat)!.push(k);
-    }
-    // order categories per BUFF_CATEGORIES
-    const ordered: { name: string; keys: string[] }[] = [];
-    for (const c of BUFF_CATEGORIES) {
-      if (g.has(c.name)) ordered.push({ name: c.name, keys: g.get(c.name)!.sort() });
-    }
-    if (g.has("Other")) ordered.push({ name: "Other", keys: g.get("Other")!.sort() });
+  const [query, setQuery] = useState("");
+  const [activeCat, setActiveCat] = useState<string>("All");
+
+  const categoryNames = useMemo(() => {
+    const names = new Set<string>();
+    for (const k of ALL_BUFF_KEYS) names.add(categorize(k));
+    const ordered: string[] = ["All"];
+    for (const c of BUFF_CATEGORIES) if (names.has(c.name)) ordered.push(c.name);
+    if (names.has("Other")) ordered.push("Other");
     return ordered;
   }, []);
+
+  const visibleKeys = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return ALL_BUFF_KEYS.filter((k) => {
+      if (activeCat !== "All" && categorize(k) !== activeCat) return false;
+      if (q && !k.toLowerCase().includes(q)) return false;
+      return true;
+    }).sort();
+  }, [query, activeCat]);
 
   const results = useMemo(
     () => findRecipesForBuffs(selected, matchAll),
