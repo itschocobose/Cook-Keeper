@@ -35,7 +35,7 @@ function Index() {
         <div className="inline-flex items-center gap-3 mb-3">
           <ChefHat className="w-8 h-8 text-primary text-glow" />
           <h1 className="text-2xl sm:text-3xl text-primary text-glow">
-            Buff Finder
+            Cook Keeper
           </h1>
           <Sparkles className="w-7 h-7 text-accent text-glow-cyan" />
         </div>
