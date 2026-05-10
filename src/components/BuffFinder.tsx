@@ -131,7 +131,9 @@ export function BuffFinder() {
         {/* buff list */}
         <div className="flex flex-wrap gap-1.5">
           {visibleKeys.length === 0 ? (
-            <p className="text-xs text-muted-foreground italic">No buffs match.</p>
+            <p className="text-xs text-muted-foreground italic">
+              {query ? "No buffs match." : "Select a category or search to see buffs."}
+            </p>
           ) : (
             visibleKeys.map((k) => {
               const on = selected.includes(k);
