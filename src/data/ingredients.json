@@ -1,0 +1,1649 @@
+[
+  {
+    "name": "Mushroom",
+    "img": "https://corekeeper.atma.gg/english/images/8/8c/Mushroom.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+4.2 health every sec for 20 sec"
+      ],
+      "rare": [
+        "+24 food",
+        "+5.2 health every sec for 20 sec"
+      ],
+      "epic": [
+        "+28 food",
+        "+6.3 health every sec for 20 sec"
+      ]
+    }
+  },
+  {
+    "name": "Giant Mushroom",
+    "img": "https://corekeeper.atma.gg/english/images/3/35/Giant_Mushroom.png",
+    "effects": {
+      "regular": [
+        "+31 food",
+        "+25 max health (only once)",
+        "+24 max health for 10 min"
+      ],
+      "rare": [
+        "+39 food",
+        "+25 max health (only once)",
+        "+30 max health for 10 min"
+      ],
+      "epic": [
+        "+46 food",
+        "+25 max health (only once)",
+        "+36 max health for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Glowing Mushroom",
+    "img": "https://corekeeper.atma.gg/english/images/1/1c/Glowing_Mushroom.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+4 purple glow for 10 min",
+        "+34% explosion damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+5 purple glow for 10 min",
+        "+42% explosion damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+6 purple glow for 10 min",
+        "+51% explosion damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Heart Berry",
+    "img": "https://corekeeper.atma.gg/english/images/d/da/Heart_Berry.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+25 max health for 10 min",
+        "+2.8 health every sec for 20 sec"
+      ],
+      "rare": [
+        "+24 food",
+        "+31 max health for 10 min",
+        "+3.5 health every sec for 20 sec"
+      ],
+      "epic": [
+        "+28 food",
+        "+38 max health for 10 min",
+        "+4.2 health every sec for 20 sec"
+      ]
+    }
+  },
+  {
+    "name": "Golden Heart Berry",
+    "img": "https://corekeeper.atma.gg/english/images/4/4e/Golden_Heart_Berry.png",
+    "effects": {
+      "regular": [
+        "+18 food",
+        "+50 max health for 10 min",
+        "+4.4 health every sec for 20 sec",
+        "+17.1% physical melee damage for 10 min"
+      ],
+      "rare": [
+        "+22 food",
+        "+62 max health for 10 min",
+        "+5.5 health every sec for 20 sec",
+        "+21.4% physical melee damage for 10 min"
+      ],
+      "epic": [
+        "+27 food",
+        "+75 max health for 10 min",
+        "+6.6 health every sec for 20 sec",
+        "+25.6% physical melee damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Glow Tulip",
+    "img": "https://corekeeper.atma.gg/english/images/2/28/Glow_Tulip.png",
+    "effects": {
+      "regular": [
+        "+5 blue glow for 10 min",
+        "+2 food",
+        "+1.4 mana every sec for 10 min"
+      ],
+      "rare": [
+        "+6 blue glow for 10 min",
+        "+2 food",
+        "+1.8 mana every sec for 10 min"
+      ],
+      "epic": [
+        "+8 blue glow for 10 min",
+        "+3 food",
+        "+2.1 mana every sec for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Glow Tulip",
+    "img": "https://corekeeper.atma.gg/english/images/5/53/Golden_Glow_Tulip.png",
+    "effects": {
+      "regular": [
+        "+6 blue glow for 10 min",
+        "+2 food",
+        "+2.3 mana every sec for 10 min",
+        "+25 max mana for 10 min"
+      ],
+      "rare": [
+        "+8 blue glow for 10 min",
+        "+2 food",
+        "+2.9 mana every sec for 10 min",
+        "+31 max mana for 10 min"
+      ],
+      "epic": [
+        "+9 blue glow for 10 min",
+        "+3 food",
+        "+3.4 mana every sec for 10 min",
+        "+38 max mana for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Bomb Pepper",
+    "img": "https://corekeeper.atma.gg/english/images/4/44/Bomb_Pepper.png",
+    "effects": {
+      "regular": [
+        "+10 food",
+        "+21% movement speed for 1 min"
+      ],
+      "rare": [
+        "+12 food",
+        "+26.2% movement speed for 1 min"
+      ],
+      "epic": [
+        "+15 food",
+        "+31.5% movement speed for 1 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Bomb Pepper",
+    "img": "https://corekeeper.atma.gg/english/images/c/c1/Golden_Bomb_Pepper.png",
+    "effects": {
+      "regular": [
+        "+11 food",
+        "+26.9% movement speed for 1 min",
+        "+8.9% melee attack speed for 10 min"
+      ],
+      "rare": [
+        "+14 food",
+        "+33.6% movement speed for 1 min",
+        "+11.1% melee attack speed for 10 min"
+      ],
+      "epic": [
+        "+16 food",
+        "+40.4% movement speed for 1 min",
+        "+13.4% melee attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Carrock",
+    "img": "https://corekeeper.atma.gg/english/images/c/c1/Carrock.png",
+    "effects": {
+      "regular": [
+        "+15 food",
+        "+23 armor for 10 min"
+      ],
+      "rare": [
+        "+19 food",
+        "+29 armor for 10 min"
+      ],
+      "epic": [
+        "+22 food",
+        "+34 armor for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Carrock",
+    "img": "https://corekeeper.atma.gg/english/images/5/55/Golden_Carrock.png",
+    "effects": {
+      "regular": [
+        "+13 food",
+        "+26 armor for 10 min",
+        "+18% chance to knockback on melee hit for 2 min"
+      ],
+      "rare": [
+        "+16 food",
+        "+32 armor for 10 min",
+        "+22% chance to knockback on melee hit for 2 min"
+      ],
+      "epic": [
+        "+20 food",
+        "+39 armor for 10 min",
+        "+27% chance to knockback on melee hit for 2 min"
+      ]
+    }
+  },
+  {
+    "name": "Puffungi",
+    "img": "https://corekeeper.atma.gg/english/images/8/88/Puffungi.png",
+    "effects": {
+      "regular": [
+        "+10 food",
+        "+6% reduced damage taken from bosses for 10 min",
+        "+5.5 health every sec for 20 sec"
+      ],
+      "rare": [
+        "+12 food",
+        "+8% reduced damage taken from bosses for 10 min",
+        "+6.9 health every sec for 20 sec"
+      ],
+      "epic": [
+        "+15 food",
+        "+9% reduced damage taken from bosses for 10 min",
+        "+8.2 health every sec for 20 sec"
+      ]
+    }
+  },
+  {
+    "name": "Golden Puffungi",
+    "img": "https://corekeeper.atma.gg/english/images/6/6c/Golden_Puffungi.png",
+    "effects": {
+      "regular": [
+        "+10 food",
+        "+9% reduced damage taken from bosses for 10 min",
+        "+7.9 health every sec for 20 sec",
+        "+14% damage against bosses for 1 min"
+      ],
+      "rare": [
+        "+12 food",
+        "+11% reduced damage taken from bosses for 10 min",
+        "+9.9 health every sec for 20 sec",
+        "+18% damage against bosses for 1 min"
+      ],
+      "epic": [
+        "+15 food",
+        "+14% reduced damage taken from bosses for 10 min",
+        "+11.8 health every sec for 20 sec",
+        "+21% damage against bosses for 1 min"
+      ]
+    }
+  },
+  {
+    "name": "Bloat Oat",
+    "img": "https://corekeeper.atma.gg/english/images/e/e6/Bloat_Oat.png",
+    "effects": {
+      "regular": [
+        "+43 food",
+        "+9.1 health every sec for 20 sec"
+      ],
+      "rare": [
+        "+54 food",
+        "+11.4 health every sec for 20 sec"
+      ],
+      "epic": [
+        "+64 food",
+        "+13.6 health every sec for 20 sec"
+      ]
+    }
+  },
+  {
+    "name": "Golden Bloat Oat",
+    "img": "https://corekeeper.atma.gg/english/images/a/a2/Golden_Bloat_Oat.png",
+    "effects": {
+      "regular": [
+        "+42 food",
+        "+12.1 health every sec for 20 sec",
+        "+10% less food drained when running for 10 min"
+      ],
+      "rare": [
+        "+52 food",
+        "+15.1 health every sec for 20 sec",
+        "+12% less food drained when running for 10 min"
+      ],
+      "epic": [
+        "+63 food",
+        "+18.2 health every sec for 20 sec",
+        "+15% less food drained when running for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Pewpaya",
+    "img": "https://corekeeper.atma.gg/english/images/6/66/Pewpaya.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+6.3 health every sec for 20 sec",
+        "+22.4% physical range damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+7.9 health every sec for 20 sec",
+        "+28% physical range damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+9.4 health every sec for 20 sec",
+        "+33.6% physical range damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Pewpaya",
+    "img": "https://corekeeper.atma.gg/english/images/3/37/Golden_Pewpaya.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+8.2 health every sec for 20 sec",
+        "+28.2% physical range damage for 10 min",
+        "+8.4% range attack speed for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+10.2 health every sec for 20 sec",
+        "+35.2% physical range damage for 10 min",
+        "+10.5% range attack speed for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+12.3 health every sec for 20 sec",
+        "+42.3% physical range damage for 10 min",
+        "+12.6% range attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Pinegrapple",
+    "img": "https://corekeeper.atma.gg/english/images/0/09/Pinegrapple.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+5.4 health every sec for 20 sec",
+        "+22.4% physical melee damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+6.8 health every sec for 20 sec",
+        "+28% physical melee damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+8.1 health every sec for 20 sec",
+        "+33.6% physical melee damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Pinegrapple",
+    "img": "https://corekeeper.atma.gg/english/images/1/11/Golden_Pinegrapple.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+9 health every sec for 20 sec",
+        "+28.2% physical melee damage for 10 min",
+        "+8.4% melee attack speed for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+11.2 health every sec for 20 sec",
+        "+35.2% physical melee damage for 10 min",
+        "+10.5% melee attack speed for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+13.5 health every sec for 20 sec",
+        "+42.3% physical melee damage for 10 min",
+        "+12.6% melee attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Sunrice",
+    "img": "https://corekeeper.atma.gg/english/images/8/87/Sunrice.png",
+    "effects": {
+      "regular": [
+        "+13 food",
+        "+4 glow for 10 min",
+        "+30% magic damage for 10 min"
+      ],
+      "rare": [
+        "+16 food",
+        "+5 glow for 10 min",
+        "+37.5% magic damage for 10 min"
+      ],
+      "epic": [
+        "+20 food",
+        "+6 glow for 10 min",
+        "+45% magic damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Sunrice",
+    "img": "https://corekeeper.atma.gg/english/images/2/2e/Golden_Sunrice.png",
+    "effects": {
+      "regular": [
+        "+13 food",
+        "+4 glow for 10 min",
+        "+43.3% magic damage for 10 min",
+        "+49 magic barrier for 10 min"
+      ],
+      "rare": [
+        "+16 food",
+        "+5 glow for 10 min",
+        "+54.1% magic damage for 10 min",
+        "+61 magic barrier for 10 min"
+      ],
+      "epic": [
+        "+20 food",
+        "+6 glow for 10 min",
+        "+65% magic damage for 10 min",
+        "+74 magic barrier for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Lunacorn",
+    "img": "https://corekeeper.atma.gg/english/images/e/e9/Lunacorn.png",
+    "effects": {
+      "regular": [
+        "+13 food",
+        "+4 blue glow for 10 min",
+        "+30% minion damage for 10 min"
+      ],
+      "rare": [
+        "+16 food",
+        "+5 blue glow for 10 min",
+        "+37.5% minion damage for 10 min"
+      ],
+      "epic": [
+        "+20 food",
+        "+6 blue glow for 10 min",
+        "+45% minion damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Lunacorn",
+    "img": "https://corekeeper.atma.gg/english/images/0/0c/Golden_Lunacorn.png",
+    "effects": {
+      "regular": [
+        "+14 food",
+        "+4 blue glow for 10 min",
+        "+39.5% minion damage for 10 min",
+        "+55.2% minion attack speed for 10 min"
+      ],
+      "rare": [
+        "+18 food",
+        "+5 blue glow for 10 min",
+        "+49.4% minion damage for 10 min",
+        "+69% minion attack speed for 10 min"
+      ],
+      "epic": [
+        "+21 food",
+        "+6 blue glow for 10 min",
+        "+59.2% minion damage for 10 min",
+        "+82.8% minion attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Dodo Egg",
+    "img": "https://corekeeper.atma.gg/english/images/d/de/Dodo_Egg.png",
+    "effects": {
+      "regular": [
+        "+30 food",
+        "+4.3 health every sec for 20 sec",
+        "+25% more healing from health over time regeneration for 10 min"
+      ],
+      "rare": [
+        "+38 food",
+        "+5.4 health every sec for 20 sec",
+        "+31% more healing from health over time regeneration for 10 min"
+      ],
+      "epic": [
+        "+45 food",
+        "+6.4 health every sec for 20 sec",
+        "+38% more healing from health over time regeneration for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Marbled Meat",
+    "img": "https://corekeeper.atma.gg/english/images/c/c9/Marbled_Meat.png",
+    "effects": {
+      "regular": [
+        "+27 food",
+        "+2.6 health every sec for 20 sec",
+        "+13.3% damage for 10 min"
+      ],
+      "rare": [
+        "+34 food",
+        "+3.2 health every sec for 20 sec",
+        "+16.6% damage for 10 min"
+      ],
+      "epic": [
+        "+40 food",
+        "+3.9 health every sec for 20 sec",
+        "+20% damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Meadow Milk",
+    "img": "https://corekeeper.atma.gg/english/images/2/25/Meadow_Milk.png",
+    "effects": {
+      "regular": [
+        "+32 food",
+        "+22.9% armor for 10 min",
+        "+2 health every sec for 20 sec"
+      ],
+      "rare": [
+        "+40 food",
+        "+28.6% armor for 10 min",
+        "+2.5 health every sec for 20 sec"
+      ],
+      "epic": [
+        "+48 food",
+        "+34.4% armor for 10 min",
+        "+3 health every sec for 20 sec"
+      ]
+    }
+  },
+  {
+    "name": "Larva Meat",
+    "img": "https://corekeeper.atma.gg/english/images/0/0b/Larva_Meat.png",
+    "effects": {
+      "regular": [
+        "+22 food",
+        "+2.8 health every sec for 20 sec",
+        "+6% critical hit chance for 10 min"
+      ],
+      "rare": [
+        "+28 food",
+        "+3.5 health every sec for 20 sec",
+        "+8% critical hit chance for 10 min"
+      ],
+      "epic": [
+        "+33 food",
+        "+4.2 health every sec for 20 sec",
+        "+9% critical hit chance for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Shiny Larva Meat",
+    "img": "https://corekeeper.atma.gg/english/images/5/58/Shiny_Larva_Meat.png",
+    "effects": {
+      "regular": [
+        "+25 food",
+        "+13% critical hit chance for 10 min",
+        "+4 health on melee hit for 10 min"
+      ],
+      "rare": [
+        "+31 food",
+        "+16% critical hit chance for 10 min",
+        "+5 health on melee hit for 10 min"
+      ],
+      "epic": [
+        "+38 food",
+        "+20% critical hit chance for 10 min",
+        "+6 health on melee hit for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Amber Larva",
+    "img": "https://corekeeper.atma.gg/english/images/7/72/Amber_Larva.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+50 max health (only once)",
+        "+52 max health for 5 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+50 max health (only once)",
+        "+65 max health for 5 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+50 max health (only once)",
+        "+78 max health for 5 min"
+      ]
+    }
+  },
+  {
+    "name": "Atlantean Worm Heart",
+    "img": "https://corekeeper.atma.gg/english/images/a/aa/Atlantean_Worm_Heart.png",
+    "effects": {
+      "regular": [
+        "+27 food",
+        "+20 health every sec to you and all nearby allies for 20 sec",
+        "+100 max health (only once)"
+      ],
+      "rare": [
+        "+34 food",
+        "+25 health every sec to you and all nearby allies for 20 sec",
+        "+100 max health (only once)"
+      ],
+      "epic": [
+        "+40 food",
+        "+30 health every sec to you and all nearby allies for 20 sec",
+        "+100 max health (only once)"
+      ]
+    }
+  },
+  {
+    "name": "Oblidra's Heart",
+    "img": "https://corekeeper.atma.gg/english/images/3/3c/Oblidra%27s_Heart.png",
+    "effects": {
+      "regular": [
+        "+29 food",
+        "+6 purple glow for 10 min",
+        "+21.8% damage dealt by you and all nearby allies for 10 min",
+        "+70 max health (only once)"
+      ],
+      "rare": [
+        "+36 food",
+        "+8 purple glow for 10 min",
+        "+27.2% damage dealt by you and all nearby allies for 10 min",
+        "+70 max health (only once)"
+      ],
+      "epic": [
+        "+44 food",
+        "+9 purple glow for 10 min",
+        "+32.7% damage dealt by you and all nearby allies for 10 min",
+        "+70 max health (only once)"
+      ]
+    }
+  },
+  {
+    "name": "Grumpkin",
+    "img": "https://corekeeper.atma.gg/english/images/3/31/Grumpkin.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+4.3 health every sec for 20 sec",
+        "+45 mining damage for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+5.4 health every sec for 20 sec",
+        "+56 mining damage for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+6.4 health every sec for 20 sec",
+        "+68 mining damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Grumpkin",
+    "img": "https://corekeeper.atma.gg/english/images/5/50/Golden_Grumpkin.png",
+    "effects": {
+      "regular": [
+        "+18 food",
+        "+6.2 health every sec for 20 sec",
+        "+71 mining damage for 10 min",
+        "+7.2% mining speed for 10 min"
+      ],
+      "rare": [
+        "+22 food",
+        "+7.8 health every sec for 20 sec",
+        "+89 mining damage for 10 min",
+        "+9% mining speed for 10 min"
+      ],
+      "epic": [
+        "+27 food",
+        "+9.3 health every sec for 20 sec",
+        "+106 mining damage for 10 min",
+        "+10.8% mining speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Orange Cave Guppy",
+    "img": "https://corekeeper.atma.gg/english/images/0/00/Orange_Cave_Guppy.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+2.1 health every sec for 20 sec",
+        "+8 mining damage for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+2.6 health every sec for 20 sec",
+        "+10 mining damage for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+3.2 health every sec for 20 sec",
+        "+12 mining damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Blue Cave Guppy",
+    "img": "https://corekeeper.atma.gg/english/images/0/0c/Blue_Cave_Guppy.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+2.2 health every sec for 20 sec",
+        "+13 magic barrier for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+2.8 health every sec for 20 sec",
+        "+16 magic barrier for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+3.3 health every sec for 20 sec",
+        "+20 magic barrier for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Rock Jaw",
+    "img": "https://corekeeper.atma.gg/english/images/3/3b/Rock_Jaw.png",
+    "effects": {
+      "regular": [
+        "+22 food",
+        "+2.5 health every sec for 20 sec",
+        "+15.9% physical melee damage for 10 min"
+      ],
+      "rare": [
+        "+28 food",
+        "+3.1 health every sec for 20 sec",
+        "+19.9% physical melee damage for 10 min"
+      ],
+      "epic": [
+        "+33 food",
+        "+3.8 health every sec for 20 sec",
+        "+23.8% physical melee damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Gem Crab",
+    "img": "https://corekeeper.atma.gg/english/images/c/ca/Gem_Crab.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+3.1 health every sec for 20 sec",
+        "+14 armor for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+3.9 health every sec for 20 sec",
+        "+18 armor for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+4.6 health every sec for 20 sec",
+        "+21 armor for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Dagger Fin",
+    "img": "https://corekeeper.atma.gg/english/images/b/ba/Dagger_Fin.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+3.9 health every sec for 20 sec",
+        "+23.3% minion damage for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+4.9 health every sec for 20 sec",
+        "+29.1% minion damage for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+5.8 health every sec for 20 sec",
+        "+35% minion damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Pink Palace Fish",
+    "img": "https://corekeeper.atma.gg/english/images/e/ea/Pink_Palace_Fish.png",
+    "effects": {
+      "regular": [
+        "+22 food",
+        "+3.9 health every sec for 20 sec",
+        "+9.2% melee attack speed for 10 min"
+      ],
+      "rare": [
+        "+28 food",
+        "+4.9 health every sec for 20 sec",
+        "+11.5% melee attack speed for 10 min"
+      ],
+      "epic": [
+        "+33 food",
+        "+5.8 health every sec for 20 sec",
+        "+13.8% melee attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Teal Palace Fish",
+    "img": "https://corekeeper.atma.gg/english/images/e/e6/Teal_Palace_Fish.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+4 health every sec for 20 sec",
+        "+10.4% range attack speed for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+5 health every sec for 20 sec",
+        "+13% range attack speed for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+6 health every sec for 20 sec",
+        "+15.6% range attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Crown Squid",
+    "img": "https://corekeeper.atma.gg/english/images/c/c4/Crown_Squid.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+5 health every sec for 20 sec",
+        "+19% chance to knockback on melee hit for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+6.2 health every sec for 20 sec",
+        "+24% chance to knockback on melee hit for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+7.5 health every sec for 20 sec",
+        "+28% chance to knockback on melee hit for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Yellow Blister Head",
+    "img": "https://corekeeper.atma.gg/english/images/1/10/Yellow_Blister_Head.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+2.6 health every sec for 20 sec",
+        "Immune to being slowed by slime for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+3.2 health every sec for 20 sec",
+        "Immune to being slowed by slime for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+3.9 health every sec for 20 sec",
+        "Immune to being slowed by slime for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Green Blister Head",
+    "img": "https://corekeeper.atma.gg/english/images/f/f3/Green_Blister_Head.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+2.5 health every sec for 20 sec",
+        "Immune to acid damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+3.1 health every sec for 20 sec",
+        "Immune to acid damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+3.8 health every sec for 20 sec",
+        "Immune to acid damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Devil Worm",
+    "img": "https://corekeeper.atma.gg/english/images/1/16/Devil_Worm.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+3 health every sec for 20 sec",
+        "+22.8% physical range damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+3.8 health every sec for 20 sec",
+        "+28.5% physical range damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+4.5 health every sec for 20 sec",
+        "+34.2% physical range damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Vampire Eel",
+    "img": "https://corekeeper.atma.gg/english/images/6/6b/Vampire_Eel.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+3.5 health every sec for 20 sec",
+        "+3 health on melee hit for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+4.4 health every sec for 20 sec",
+        "+4 health on melee hit for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+5.2 health every sec for 20 sec",
+        "+4 health on melee hit for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Mold Shark",
+    "img": "https://corekeeper.atma.gg/english/images/d/d8/Mold_Shark.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+4.8 health every sec for 20 sec",
+        "+38.6% physical melee damage for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+6 health every sec for 20 sec",
+        "+48.2% physical melee damage for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+7.2 health every sec for 20 sec",
+        "+57.9% physical melee damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Rot Fish",
+    "img": "https://corekeeper.atma.gg/english/images/6/62/Rot_Fish.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "Immune to mold infection for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "Immune to mold infection for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "Immune to mold infection for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Black Steel Urchin",
+    "img": "https://corekeeper.atma.gg/english/images/5/5e/Black_Steel_Urchin.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+3.6 health every sec for 20 sec",
+        "+22 armor for 10 min",
+        "+15 thorns damage for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+4.5 health every sec for 20 sec",
+        "+28 armor for 10 min",
+        "+19 thorns damage for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+5.4 health every sec for 20 sec",
+        "+33 armor for 10 min",
+        "+22 thorns damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Azure Feather Fish",
+    "img": "https://corekeeper.atma.gg/english/images/a/a4/Azure_Feather_Fish.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+8.1 health every sec for 20 sec"
+      ],
+      "rare": [
+        "+26 food",
+        "+10.1 health every sec for 20 sec"
+      ],
+      "epic": [
+        "+32 food",
+        "+12.2 health every sec for 20 sec"
+      ]
+    }
+  },
+  {
+    "name": "Emerald Feather Fish",
+    "img": "https://corekeeper.atma.gg/english/images/c/ce/Emerald_Feather_Fish.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+3 health every sec for 20 sec",
+        "+29 max mana for 10 min",
+        "+21% magic damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+3.8 health every sec for 20 sec",
+        "+36 max mana for 10 min",
+        "+26.2% magic damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+4.5 health every sec for 20 sec",
+        "+44 max mana for 10 min",
+        "+31.5% magic damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Spirit Veil",
+    "img": "https://corekeeper.atma.gg/english/images/5/5f/Spirit_Veil.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+36.2% movement speed for 2 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+45.2% movement speed for 2 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+54.3% movement speed for 2 min"
+      ]
+    }
+  },
+  {
+    "name": "Astral Jelly",
+    "img": "https://corekeeper.atma.gg/english/images/2/29/Astral_Jelly.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+5.2 health every sec for 20 sec",
+        "+63 fishing for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+6.5 health every sec for 20 sec",
+        "+79 fishing for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+7.8 health every sec for 20 sec",
+        "+94 fishing for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Bottom Tracer",
+    "img": "https://corekeeper.atma.gg/english/images/6/6c/Bottom_Tracer.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+5.8 health every sec for 20 sec",
+        "+2.8 mana every sec for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+7.2 health every sec for 20 sec",
+        "+3.5 mana every sec for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+8.7 health every sec for 20 sec",
+        "+4.2 mana every sec for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Silver Dart",
+    "img": "https://corekeeper.atma.gg/english/images/1/16/Silver_Dart.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+5.5 health every sec for 20 sec",
+        "+31% critical hit damage for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+6.9 health every sec for 20 sec",
+        "+39% critical hit damage for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+8.2 health every sec for 20 sec",
+        "+46% critical hit damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Golden Dart",
+    "img": "https://corekeeper.atma.gg/english/images/f/f6/Golden_Dart.png",
+    "effects": {
+      "regular": [
+        "+22 food",
+        "+5.7 health every sec for 20 sec",
+        "+11% dodge chance for 10 min"
+      ],
+      "rare": [
+        "+28 food",
+        "+7.1 health every sec for 20 sec",
+        "+14% dodge chance for 10 min"
+      ],
+      "epic": [
+        "+33 food",
+        "+8.6 health every sec for 20 sec",
+        "+16% dodge chance for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Pink Coralotl",
+    "img": "https://corekeeper.atma.gg/english/images/b/b1/Pink_Coralotl.png",
+    "effects": {
+      "regular": [
+        "+22 food",
+        "+4.7 health every sec for 20 sec",
+        "+50 max mana for 10 min",
+        "+36 magic barrier for 10 min"
+      ],
+      "rare": [
+        "+28 food",
+        "+5.9 health every sec for 20 sec",
+        "+62 max mana for 10 min",
+        "+45 magic barrier for 10 min"
+      ],
+      "epic": [
+        "+33 food",
+        "+7 health every sec for 20 sec",
+        "+75 max mana for 10 min",
+        "+54 magic barrier for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "White Coralotl",
+    "img": "https://corekeeper.atma.gg/english/images/0/05/White_Coralotl.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+5.8 health every sec for 20 sec",
+        "+14.8% mining speed for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+7.2 health every sec for 20 sec",
+        "+18.5% mining speed for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+8.7 health every sec for 20 sec",
+        "+22.2% mining speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Solid Spikeback",
+    "img": "https://corekeeper.atma.gg/english/images/9/9d/Solid_Spikeback.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+38 armor for 10 min",
+        "+50 thorns damage for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+48 armor for 10 min",
+        "+62 thorns damage for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+57 armor for 10 min",
+        "+75 thorns damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Sandy Spikeback",
+    "img": "https://corekeeper.atma.gg/english/images/8/83/Sandy_Spikeback.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+78 max health for 10 min",
+        "+206 mining damage for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+98 max health for 10 min",
+        "+258 mining damage for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+117 max health for 10 min",
+        "+309 mining damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Gray Dune Tail",
+    "img": "https://corekeeper.atma.gg/english/images/6/6b/Gray_Dune_Tail.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+6.7 health every sec for 20 sec",
+        "+13.9% melee attack speed for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+8.4 health every sec for 20 sec",
+        "+17.4% melee attack speed for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+10 health every sec for 20 sec",
+        "+20.8% melee attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Brown Dune Tail",
+    "img": "https://corekeeper.atma.gg/english/images/7/7e/Brown_Dune_Tail.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+8.1 health every sec for 20 sec",
+        "+13.9% range attack speed for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+10.1 health every sec for 20 sec",
+        "+17.4% range attack speed for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+12.2 health every sec for 20 sec",
+        "+20.8% range attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Tornis Kingfish",
+    "img": "https://corekeeper.atma.gg/english/images/6/68/Tornis_Kingfish.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+7.8 health every sec for 20 sec",
+        "+50.4% damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+9.8 health every sec for 20 sec",
+        "+63% damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+11.7 health every sec for 20 sec",
+        "+75.6% damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Dark Lava Eater",
+    "img": "https://corekeeper.atma.gg/english/images/5/5a/Dark_Lava_Eater.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+7.8 health every sec for 20 sec",
+        "+7 health on melee hit for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+9.8 health every sec for 20 sec",
+        "+9 health on melee hit for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+11.7 health every sec for 20 sec",
+        "+10 health on melee hit for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Bright Lava Eater",
+    "img": "https://corekeeper.atma.gg/english/images/5/55/Bright_Lava_Eater.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+7.1 health every sec for 20 sec",
+        "+21% more healing from health over time regeneration for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+8.9 health every sec for 20 sec",
+        "+26% more healing from health over time regeneration for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+10.6 health every sec for 20 sec",
+        "+32% more healing from health over time regeneration for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Verdant Dragonfish",
+    "img": "https://corekeeper.atma.gg/english/images/c/cf/Verdant_Dragonfish.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+41% critical hit damage for 10 min",
+        "Immune to burning for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+51% critical hit damage for 10 min",
+        "Immune to burning for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+62% critical hit damage for 10 min",
+        "Immune to burning for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Elder Dragonfish",
+    "img": "https://corekeeper.atma.gg/english/images/3/34/Elder_Dragonfish.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+14% critical hit chance for 10 min",
+        "Immune to burning for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+18% critical hit chance for 10 min",
+        "Immune to burning for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+21% critical hit chance for 10 min",
+        "Immune to burning for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Starlight Nautilus",
+    "img": "https://corekeeper.atma.gg/english/images/c/c3/Starlight_Nautilus.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+17.7 health every sec for 20 sec",
+        "+7% critical hit chance for 10 min",
+        "+8.5% melee and range attack speed for 10 min",
+        "+100 max health (only once)"
+      ],
+      "rare": [
+        "+26 food",
+        "+22.1 health every sec for 20 sec",
+        "+9% critical hit chance for 10 min",
+        "+10.6% melee and range attack speed for 10 min",
+        "+100 max health (only once)"
+      ],
+      "epic": [
+        "+32 food",
+        "+26.6 health every sec for 20 sec",
+        "+10% critical hit chance for 10 min",
+        "+12.8% melee and range attack speed for 10 min",
+        "+100 max health (only once)"
+      ]
+    }
+  },
+  {
+    "name": "Beryll Angle Fish",
+    "img": "https://corekeeper.atma.gg/english/images/7/73/Beryll_Angle_Fish.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+136 max health for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+170 max health for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+204 max health for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Glistening Deepstalker",
+    "img": "https://corekeeper.atma.gg/english/images/3/33/Glistening_Deepstalker.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+13% dodge chance for 10 min",
+        "+27.2% movement speed for 1 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+16% dodge chance for 10 min",
+        "+34% movement speed for 1 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+20% dodge chance for 10 min",
+        "+40.8% movement speed for 1 min"
+      ]
+    }
+  },
+  {
+    "name": "Cosmic Form",
+    "img": "https://corekeeper.atma.gg/english/images/7/74/Cosmic_Form.png",
+    "effects": {
+      "regular": [
+        "+18 food",
+        "+30.9% damage dealt by your pet for 10 min"
+      ],
+      "rare": [
+        "+22 food",
+        "+38.6% damage dealt by your pet for 10 min"
+      ],
+      "epic": [
+        "+27 food",
+        "+46.4% damage dealt by your pet for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Jasper Angle Fish",
+    "img": "https://corekeeper.atma.gg/english/images/5/5d/Jasper_Angle_Fish.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+96 max health for 10 min",
+        "+45 armor for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+120 max health for 10 min",
+        "+56 armor for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+144 max health for 10 min",
+        "+68 armor for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Splendid Deepstalker",
+    "img": "https://corekeeper.atma.gg/english/images/0/0e/Splendid_Deepstalker.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+10% dodge chance for 10 min",
+        "+21.2% movement speed for 1 min",
+        "+11.3% melee and range attack speed for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+12% dodge chance for 10 min",
+        "+26.5% movement speed for 1 min",
+        "+14.1% melee and range attack speed for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+15% dodge chance for 10 min",
+        "+31.8% movement speed for 1 min",
+        "+17% melee and range attack speed for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Terra Trilobite",
+    "img": "https://corekeeper.atma.gg/english/images/e/e3/Terra_Trilobite.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+103 max health for 10 min",
+        "+344 mining damage for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+129 max health for 10 min",
+        "+430 mining damage for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+154 max health for 10 min",
+        "+516 mining damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Litho Trilobite",
+    "img": "https://corekeeper.atma.gg/english/images/e/e0/Litho_Trilobite.png",
+    "effects": {
+      "regular": [
+        "+22 food",
+        "+5.5 health every sec for 20 sec",
+        "+69 max mana for 10 min",
+        "+43 magic barrier for 10 min"
+      ],
+      "rare": [
+        "+28 food",
+        "+6.9 health every sec for 20 sec",
+        "+86 max mana for 10 min",
+        "+54 magic barrier for 10 min"
+      ],
+      "epic": [
+        "+33 food",
+        "+8.2 health every sec for 20 sec",
+        "+104 max mana for 10 min",
+        "+64 magic barrier for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Greenhorn Pico",
+    "img": "https://corekeeper.atma.gg/english/images/5/5e/Greenhorn_Pico.png",
+    "effects": {
+      "regular": [
+        "+21 food",
+        "+6.6 health every sec for 40 sec",
+        "+36.8% minion attack speed for 10 min",
+        "+12% minion critical hit chance for 10 min"
+      ],
+      "rare": [
+        "+26 food",
+        "+8.2 health every sec for 40 sec",
+        "+46% minion attack speed for 10 min",
+        "+15% minion critical hit chance for 10 min"
+      ],
+      "epic": [
+        "+32 food",
+        "+9.9 health every sec for 40 sec",
+        "+55.2% minion attack speed for 10 min",
+        "+18% minion critical hit chance for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Pinkhorn Pico",
+    "img": "https://corekeeper.atma.gg/english/images/d/db/Pinkhorn_Pico.png",
+    "effects": {
+      "regular": [
+        "+20 food",
+        "+9.5 health every sec for 20 sec",
+        "+52.1% minion damage for 10 min"
+      ],
+      "rare": [
+        "+25 food",
+        "+11.9 health every sec for 20 sec",
+        "+65.1% minion damage for 10 min"
+      ],
+      "epic": [
+        "+30 food",
+        "+14.2 health every sec for 20 sec",
+        "+78.2% minion damage for 10 min"
+      ]
+    }
+  },
+  {
+    "name": "Riftian Lampfish",
+    "img": "https://corekeeper.atma.gg/english/images/3/3f/Riftian_Lampfish.png",
+    "effects": {
+      "regular": [
+        "+19 food",
+        "+7.2 health every sec for 20 sec",
+        "+58 max mana for 10 min",
+        "+27.6% magic damage for 10 min",
+        "+5 blue glow for 10 min"
+      ],
+      "rare": [
+        "+24 food",
+        "+9 health every sec for 20 sec",
+        "+72 max mana for 10 min",
+        "+34.5% magic damage for 10 min",
+        "+6 blue glow for 10 min"
+      ],
+      "epic": [
+        "+28 food",
+        "+10.8 health every sec for 20 sec",
+        "+87 max mana for 10 min",
+        "+41.4% magic damage for 10 min",
+        "+8 blue glow for 10 min"
+      ]
+    }
+  }
+]
