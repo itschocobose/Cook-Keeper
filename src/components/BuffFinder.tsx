@@ -75,32 +75,82 @@ export function BuffFinder() {
           )}
         </div>
 
-        {grouped.map((g) => (
-          <div key={g.name} className="mb-4">
-            <div className="text-xs uppercase tracking-wider text-accent text-glow-cyan mb-2">
-              {g.name}
+        {/* search */}
+        <div className="relative mb-3">
+          <Search className="absolute left-2 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search buffs..."
+            className="pl-8"
+          />
+        </div>
+
+        {/* category tabs */}
+        <div className="flex flex-wrap gap-1 mb-3">
+          {categoryNames.map((name) => {
+            const on = activeCat === name;
+            return (
+              <button
+                key={name}
+                onClick={() => setActiveCat(name)}
+                className={`text-xs px-2 py-1 rounded border transition-all ${
+                  on
+                    ? "bg-accent/20 border-accent text-accent text-glow-cyan"
+                    : "border-border text-muted-foreground hover:text-foreground hover:border-accent/60"
+                }`}
+              >
+                {name}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* selected chips */}
+        {selected.length > 0 && (
+          <div className="mb-3 pb-3 border-b border-border">
+            <div className="text-xs uppercase tracking-wider text-primary text-glow mb-2">
+              Selected ({selected.length})
             </div>
             <div className="flex flex-wrap gap-1.5">
-              {g.keys.map((k) => {
-                const on = selected.includes(k);
-                return (
-                  <button
-                    key={k}
-                    onClick={() => toggle(k)}
-                    className={`text-xs px-2 py-1 rounded border transition-all ${
-                      on
-                        ? "bg-primary/20 border-primary text-primary text-glow"
-                        : "bg-secondary/40 border-border text-muted-foreground hover:border-primary/60 hover:text-foreground"
-                    }`}
-                  >
-                    {on ? <X className="inline w-3 h-3 mr-1" /> : <Plus className="inline w-3 h-3 mr-1" />}
-                    {titleCase(k)}
-                  </button>
-                );
-              })}
+              {selected.map((k) => (
+                <button
+                  key={k}
+                  onClick={() => toggle(k)}
+                  className="text-xs px-2 py-1 rounded border bg-primary/20 border-primary text-primary text-glow"
+                >
+                  <X className="inline w-3 h-3 mr-1" />
+                  {titleCase(k)}
+                </button>
+              ))}
             </div>
           </div>
-        ))}
+        )}
+
+        {/* buff list */}
+        <div className="flex flex-wrap gap-1.5">
+          {visibleKeys.length === 0 ? (
+            <p className="text-xs text-muted-foreground italic">No buffs match.</p>
+          ) : (
+            visibleKeys.map((k) => {
+              const on = selected.includes(k);
+              return (
+                <button
+                  key={k}
+                  onClick={() => toggle(k)}
+                  className={`text-xs px-2 py-1 rounded border transition-all ${
+                    on
+                      ? "bg-primary/20 border-primary text-primary text-glow"
+                      : "bg-secondary/40 border-border text-muted-foreground hover:border-primary/60 hover:text-foreground"
+                  }`}
+                >
+                  {on ? <X className="inline w-3 h-3 mr-1" /> : <Plus className="inline w-3 h-3 mr-1" />}
+                  {titleCase(k)}
+                </button>
+              );
+            })
+          )}
+        </div>
       </aside>
 
       {/* results */}
