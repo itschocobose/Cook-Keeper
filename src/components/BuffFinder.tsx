@@ -7,8 +7,8 @@ import {
   formatEffect,
 } from "@/lib/cooking";
 import { IngredientIcon } from "./IngredientIcon";
-import { Button } from "@/components/ui/button";
-import { Plus, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Plus, X, Search } from "lucide-react";
 
 function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
