@@ -40,7 +40,7 @@ function Index() {
           <Sparkles className="w-7 h-7 text-accent text-glow-cyan" />
         </div>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          Pick the buffs you want, or combine two ingredients in the cooking pot to preview the dish.
+          Keeping track of buffs is hard. Cooking shouldn't be!
         </p>
       </header>
 
