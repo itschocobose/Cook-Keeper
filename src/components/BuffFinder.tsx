@@ -19,12 +19,12 @@ export function BuffFinder() {
   const [matchAll, setMatchAll] = useState(true);
 
   const [query, setQuery] = useState("");
-  const [activeCat, setActiveCat] = useState<string>("All");
+  const [activeCat, setActiveCat] = useState<string>("");
 
   const categoryNames = useMemo(() => {
     const names = new Set<string>();
     for (const k of ALL_BUFF_KEYS) names.add(categorize(k));
-    const ordered: string[] = ["All"];
+    const ordered: string[] = [];
     for (const c of BUFF_CATEGORIES) if (names.has(c.name)) ordered.push(c.name);
     if (names.has("Other")) ordered.push("Other");
     return ordered;
@@ -32,8 +32,9 @@ export function BuffFinder() {
 
   const visibleKeys = useMemo(() => {
     const q = query.trim().toLowerCase();
+    if (!q && !activeCat) return [];
     return ALL_BUFF_KEYS.filter((k) => {
-      if (activeCat !== "All" && categorize(k) !== activeCat) return false;
+      if (activeCat && categorize(k) !== activeCat) return false;
       if (q && !k.toLowerCase().includes(q)) return false;
       return true;
     }).sort();
