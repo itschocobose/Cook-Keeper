@@ -16,9 +16,12 @@ function titleCase(s: string) {
 
 const PAGE_SIZE = 5;
 
+type SortMode = "default" | "desc" | "asc";
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
+  const [sortMode, setSortMode] = useState<SortMode>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
@@ -57,9 +60,24 @@ export function BuffFinder() {
     setSelected((s) => (s.includes(k) ? s.filter((x) => x !== k) : [...s, k]));
   };
 
-  const totalPages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+  const relevantTotal = (effects: { key: string; value: number }[]) =>
+    effects.reduce((sum, e) => (selected.includes(e.key) ? sum + e.value : sum), 0);
+
+  const sortedResults = useMemo(() => {
+    if (sortMode === "default") return results;
+    const arr = [...results];
+    arr.sort((x, y) => {
+      const dx = relevantTotal(x.effects);
+      const dy = relevantTotal(y.effects);
+      return sortMode === "desc" ? dy - dx : dx - dy;
+    });
+    return arr;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results, sortMode, selected]);
+
+  const totalPages = Math.max(1, Math.ceil(sortedResults.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages - 1);
-  const pageResults = results.slice(
+  const pageResults = sortedResults.slice(
     currentPage * PAGE_SIZE,
     currentPage * PAGE_SIZE + PAGE_SIZE
   );
@@ -176,10 +194,36 @@ export function BuffFinder() {
             <div className="text-sm text-muted-foreground mb-3 flex flex-wrap items-center gap-2">
               <span>
                 Showing {currentPage * PAGE_SIZE + 1}–
-                {currentPage * PAGE_SIZE + pageResults.length} of {results.length} recipe
-                {results.length === 1 ? "" : "s"}
+                {currentPage * PAGE_SIZE + pageResults.length} of {sortedResults.length} recipe
+                {sortedResults.length === 1 ? "" : "s"}
                 {matchAll ? " matching all buffs" : " matching at least one buff"}.
               </span>
+              <div className="ml-auto flex items-center gap-1 text-xs">
+                <span className="text-muted-foreground">Sort by total:</span>
+                {([
+                  ["default", "Default"],
+                  ["desc", "High → Low"],
+                  ["asc", "Low → High"],
+                ] as [SortMode, string][]).map(([mode, label]) => {
+                  const on = sortMode === mode;
+                  return (
+                    <button
+                      key={mode}
+                      onClick={() => {
+                        setSortMode(mode);
+                        setPage(0);
+                      }}
+                      className={`px-2 py-1 rounded border transition-all ${
+                        on
+                          ? "bg-primary/20 border-primary text-primary text-glow"
+                          : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             <ul className="grid gap-3">
               {pageResults.map((r, idx) => (
