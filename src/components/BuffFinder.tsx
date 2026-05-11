@@ -16,7 +16,6 @@ function titleCase(s: string) {
 
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
-  const [matchAll, setMatchAll] = useState(true);
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
@@ -40,10 +39,15 @@ export function BuffFinder() {
     }).sort();
   }, [query, activeCat]);
 
-  const results = useMemo(
-    () => findRecipesForBuffs(selected, matchAll),
-    [selected, matchAll]
-  );
+  // Try Match-all first; if it yields nothing, fall back to Any-of.
+  const { results, matchAll } = useMemo(() => {
+    const all = findRecipesForBuffs(selected, true);
+    if (all.length > 0 || selected.length <= 1) {
+      return { results: all, matchAll: true };
+    }
+    return { results: findRecipesForBuffs(selected, false), matchAll: false };
+  }, [selected]);
+
 
   const toggle = (k: string) =>
     setSelected((s) => (s.includes(k) ? s.filter((x) => x !== k) : [...s, k]));
