@@ -194,10 +194,36 @@ export function BuffFinder() {
             <div className="text-sm text-muted-foreground mb-3 flex flex-wrap items-center gap-2">
               <span>
                 Showing {currentPage * PAGE_SIZE + 1}–
-                {currentPage * PAGE_SIZE + pageResults.length} of {results.length} recipe
-                {results.length === 1 ? "" : "s"}
+                {currentPage * PAGE_SIZE + pageResults.length} of {sortedResults.length} recipe
+                {sortedResults.length === 1 ? "" : "s"}
                 {matchAll ? " matching all buffs" : " matching at least one buff"}.
               </span>
+              <div className="ml-auto flex items-center gap-1 text-xs">
+                <span className="text-muted-foreground">Sort by total:</span>
+                {([
+                  ["default", "Default"],
+                  ["desc", "High → Low"],
+                  ["asc", "Low → High"],
+                ] as [SortMode, string][]).map(([mode, label]) => {
+                  const on = sortMode === mode;
+                  return (
+                    <button
+                      key={mode}
+                      onClick={() => {
+                        setSortMode(mode);
+                        setPage(0);
+                      }}
+                      className={`px-2 py-1 rounded border transition-all ${
+                        on
+                          ? "bg-primary/20 border-primary text-primary text-glow"
+                          : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
             <ul className="grid gap-3">
               {pageResults.map((r, idx) => (
