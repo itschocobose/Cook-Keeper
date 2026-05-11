@@ -130,16 +130,31 @@ export function Combiner() {
             Pick two ingredients to see the cooked dish.
           </p>
         ) : (
-          <ul className="space-y-1 text-sm">
-            {result.map((e, i) => (
-              <li
-                key={i}
-                className={e.permanent ? "text-primary text-glow" : "text-foreground"}
-              >
-                {formatEffect(e)}
-              </li>
-            ))}
-          </ul>
+          <>
+            {a && b && (
+              <div className="flex items-center gap-2 mb-3 pb-3 border-b border-border">
+                <div className="relative w-12 h-12 shrink-0">
+                  <IngredientIcon ing={a} size={36} />
+                  <div className="absolute -bottom-1 -right-1">
+                    <IngredientIcon ing={b} size={28} />
+                  </div>
+                </div>
+                <div className="text-sm text-primary text-glow font-semibold leading-tight">
+                  {[a.name, b.name].sort().join(" & ")} Dish
+                </div>
+              </div>
+            )}
+            <ul className="space-y-1 text-sm">
+              {result.map((e, i) => (
+                <li
+                  key={i}
+                  className={e.permanent ? "text-primary text-glow" : "text-foreground"}
+                >
+                  {formatEffect(e)}
+                </li>
+              ))}
+            </ul>
+          </>
         )}
       </div>
     </section>
