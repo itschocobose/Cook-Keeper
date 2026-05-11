@@ -173,12 +173,16 @@ export function BuffFinder() {
           </div>
         ) : (
           <>
-            <div className="text-sm text-muted-foreground mb-3">
-              Showing top {results.length} recipe{results.length === 1 ? "" : "s"}
-              {matchAll ? " matching all buffs" : ` matching at least one buff`}.
+            <div className="text-sm text-muted-foreground mb-3 flex flex-wrap items-center gap-2">
+              <span>
+                Showing {currentPage * PAGE_SIZE + 1}–
+                {currentPage * PAGE_SIZE + pageResults.length} of {results.length} recipe
+                {results.length === 1 ? "" : "s"}
+                {matchAll ? " matching all buffs" : " matching at least one buff"}.
+              </span>
             </div>
             <ul className="grid gap-3">
-              {results.map((r, idx) => (
+              {pageResults.map((r, idx) => (
                 <li key={idx} className="panel p-4">
                   <div className="flex flex-wrap items-center gap-3 mb-3">
                     <div className="flex items-center gap-2">
@@ -216,6 +220,38 @@ export function BuffFinder() {
                 </li>
               ))}
             </ul>
+
+            {totalPages > 1 && (
+              <div className="mt-4 flex items-center justify-center gap-2 text-sm">
+                <button
+                  onClick={() => setPage((p) => Math.max(0, p - 1))}
+                  disabled={currentPage === 0}
+                  className="px-3 py-1 rounded border border-border text-muted-foreground hover:text-foreground hover:border-primary/60 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Prev
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setPage(i)}
+                    className={`w-8 h-8 rounded border text-xs ${
+                      i === currentPage
+                        ? "bg-primary/20 border-primary text-primary text-glow"
+                        : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                  disabled={currentPage === totalPages - 1}
+                  className="px-3 py-1 rounded border border-border text-muted-foreground hover:text-foreground hover:border-primary/60 disabled:opacity-40 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </>
         )}
       </section>
