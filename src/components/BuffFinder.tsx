@@ -60,9 +60,24 @@ export function BuffFinder() {
     setSelected((s) => (s.includes(k) ? s.filter((x) => x !== k) : [...s, k]));
   };
 
-  const totalPages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+  const relevantTotal = (effects: { key: string; value: number }[]) =>
+    effects.reduce((sum, e) => (selected.includes(e.key) ? sum + e.value : sum), 0);
+
+  const sortedResults = useMemo(() => {
+    if (sortMode === "default") return results;
+    const arr = [...results];
+    arr.sort((x, y) => {
+      const dx = relevantTotal(x.effects);
+      const dy = relevantTotal(y.effects);
+      return sortMode === "desc" ? dy - dx : dx - dy;
+    });
+    return arr;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [results, sortMode, selected]);
+
+  const totalPages = Math.max(1, Math.ceil(sortedResults.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages - 1);
-  const pageResults = results.slice(
+  const pageResults = sortedResults.slice(
     currentPage * PAGE_SIZE,
     currentPage * PAGE_SIZE + PAGE_SIZE
   );
