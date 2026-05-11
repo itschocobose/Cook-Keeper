@@ -74,6 +74,7 @@ export function Combiner() {
           })}
         </div>
 
+        {activeCat && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
           {filtered.map((i) => {
             const isA = a?.name === i.name;
@@ -95,6 +96,7 @@ export function Combiner() {
             );
           })}
         </div>
+        )}
       </section>
 
       {/* right: cooking pot */}
