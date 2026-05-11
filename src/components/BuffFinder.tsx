@@ -14,6 +14,8 @@ function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+const PAGE_SIZE = 10;
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
 
