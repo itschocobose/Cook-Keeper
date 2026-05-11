@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { BuffFinder } from "@/components/BuffFinder";
 import { Combiner } from "@/components/Combiner";
-import { ChefHat, Sparkles } from "lucide-react";
+import { ChefHat } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
