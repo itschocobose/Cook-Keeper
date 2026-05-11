@@ -16,9 +16,12 @@ function titleCase(s: string) {
 
 const PAGE_SIZE = 5;
 
+type SortMode = "default" | "desc" | "asc";
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
+  const [sortMode, setSortMode] = useState<SortMode>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
