@@ -83,9 +83,9 @@ export function BuffFinder() {
   );
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
-      {/* sidebar: buff filters */}
-      <aside className="panel p-4 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] overflow-y-auto">
+    <div className="space-y-6">
+      {/* buff filters */}
+      <aside className="panel p-4">
         <h3 className="text-sm text-glow text-primary mb-3">Buff Finder</h3>
         {selected.length > 0 && (
           <div className="flex items-center gap-2 mb-4 text-sm">
