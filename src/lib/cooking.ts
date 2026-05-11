@@ -82,6 +82,36 @@ export const ING: Ingredient[] = INGREDIENTS.map((i) => {
   };
 });
 
+/** Ingredient category (Plant / Meat / Fish) for picker grouping. */
+const MEAT_NAMES = new Set([
+  "Dodo Egg", "Marbled Meat", "Meadow Milk", "Larva Meat", "Shiny Larva Meat",
+  "Amber Larva", "Atlantean Worm Heart", "Oblidra's Heart",
+]);
+const PLANT_NAMES = new Set([
+  "Mushroom", "Giant Mushroom", "Glowing Mushroom",
+  "Heart Berry", "Golden Heart Berry",
+  "Glow Tulip", "Golden Glow Tulip",
+  "Bomb Pepper", "Golden Bomb Pepper",
+  "Carrock", "Golden Carrock",
+  "Puffungi", "Golden Puffungi",
+  "Bloat Oat", "Golden Bloat Oat",
+  "Pewpaya", "Golden Pewpaya",
+  "Pinegrapple", "Golden Pinegrapple",
+  "Sunrice", "Golden Sunrice",
+  "Lunacorn", "Golden Lunacorn",
+  "Grumpkin", "Golden Grumpkin",
+]);
+
+export type IngredientCategory = "Plant" | "Meat" | "Fish";
+
+export function ingredientCategory(name: string): IngredientCategory {
+  if (PLANT_NAMES.has(name)) return "Plant";
+  if (MEAT_NAMES.has(name)) return "Meat";
+  return "Fish";
+}
+
+export const INGREDIENT_CATEGORIES: IngredientCategory[] = ["Plant", "Meat", "Fish"];
+
 export const ALL_BUFF_KEYS: string[] = Array.from(
   new Set(ING.flatMap((i) => Array.from(i.buffKeys)))
 ).sort();
