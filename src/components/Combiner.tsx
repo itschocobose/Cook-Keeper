@@ -96,6 +96,7 @@ export function Combiner() {
             );
           })}
         </div>
+        )}
       </section>
 
       {/* right: cooking pot */}
