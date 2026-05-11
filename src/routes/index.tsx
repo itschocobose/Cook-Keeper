@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import { BuffFinder } from "@/components/BuffFinder";
 import { Combiner } from "@/components/Combiner";
 import { ChefHat } from "lucide-react";
@@ -24,11 +23,7 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type Mode = "buffs" | "combine";
-
 function Index() {
-  const [mode, setMode] = useState<Mode>("buffs");
-
   return (
     <div className="relative z-10 min-h-screen">
       <header className="px-4 sm:px-8 pt-10 pb-6 text-center">
@@ -37,40 +32,15 @@ function Index() {
           <h1 className="text-2xl sm:text-3xl text-primary text-glow">
             Cook Keeper
           </h1>
-          
         </div>
         <p className="text-muted-foreground max-w-xl mx-auto">
           Keeping track of buffs is hard. Cooking shouldn't be!
         </p>
       </header>
 
-      <nav className="px-4 sm:px-8 mb-6 flex justify-center">
-        <div className="inline-flex panel p-1">
-          <button
-            onClick={() => setMode("buffs")}
-            className={`px-4 py-2 text-sm rounded transition-all ${
-              mode === "buffs"
-                ? "bg-primary text-primary-foreground text-glow"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            Find by Buff
-          </button>
-          <button
-            onClick={() => setMode("combine")}
-            className={`px-4 py-2 text-sm rounded transition-all ${
-              mode === "combine"
-                ? "bg-primary text-primary-foreground text-glow"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            Combine Ingredients
-          </button>
-        </div>
-      </nav>
-
-      <main className="px-4 sm:px-8 pb-16 max-w-7xl mx-auto">
-        {mode === "buffs" ? <BuffFinder /> : <Combiner />}
+      <main className="px-4 sm:px-8 pb-16 max-w-7xl mx-auto space-y-10">
+        <BuffFinder />
+        <Combiner />
       </main>
 
       <footer className="text-center text-xs text-muted-foreground pb-6 px-4">
