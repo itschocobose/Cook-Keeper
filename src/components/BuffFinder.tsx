@@ -57,28 +57,19 @@ export function BuffFinder() {
       {/* sidebar: buff filters */}
       <aside className="panel p-4 lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] overflow-y-auto">
         <h3 className="text-sm text-glow text-primary mb-3">Buff Finder</h3>
-        <div className="flex items-center gap-2 mb-4 text-sm">
-          <button
-            onClick={() => setMatchAll(true)}
-            className={`px-2 py-1 rounded border ${matchAll ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
-          >
-            Match all
-          </button>
-          <button
-            onClick={() => setMatchAll(false)}
-            className={`px-2 py-1 rounded border ${!matchAll ? "bg-primary text-primary-foreground border-primary" : "border-border text-muted-foreground hover:text-foreground"}`}
-          >
-            Any of
-          </button>
-          {selected.length > 0 && (
+        {selected.length > 0 && (
+          <div className="flex items-center gap-2 mb-4 text-sm">
+            <span className="text-xs text-muted-foreground">
+              {matchAll ? "Matching all selected buffs" : "No exact match — showing any-of results"}
+            </span>
             <button
               onClick={() => setSelected([])}
               className="ml-auto text-xs text-muted-foreground hover:text-destructive"
             >
               Clear
             </button>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* search */}
         <div className="relative mb-3">
