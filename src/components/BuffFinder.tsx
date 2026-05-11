@@ -52,8 +52,17 @@ export function BuffFinder() {
   }, [selected]);
 
 
-  const toggle = (k: string) =>
+  const toggle = (k: string) => {
+    setPage(0);
     setSelected((s) => (s.includes(k) ? s.filter((x) => x !== k) : [...s, k]));
+  };
+
+  const totalPages = Math.max(1, Math.ceil(results.length / PAGE_SIZE));
+  const currentPage = Math.min(page, totalPages - 1);
+  const pageResults = results.slice(
+    currentPage * PAGE_SIZE,
+    currentPage * PAGE_SIZE + PAGE_SIZE
+  );
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-6">
