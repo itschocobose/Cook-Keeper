@@ -1,5 +1,14 @@
 import { useMemo, useState } from "react";
-import { ING, type Ingredient, type Tier, combine, formatEffect } from "@/lib/cooking";
+import {
+  ING,
+  INGREDIENT_CATEGORIES,
+  ingredientCategory,
+  type Ingredient,
+  type IngredientCategory,
+  type Tier,
+  combine,
+  formatEffect,
+} from "@/lib/cooking";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowRight } from "lucide-react";
@@ -9,12 +18,16 @@ export function Combiner() {
   const [b, setB] = useState<Ingredient | null>(null);
   const [tier, setTier] = useState<Tier>("regular");
   const [q, setQ] = useState("");
+  const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
-    if (!s) return ING;
-    return ING.filter((i) => i.name.toLowerCase().includes(s));
-  }, [q]);
+    return ING.filter((i) => {
+      if (activeCat && ingredientCategory(i.name) !== activeCat) return false;
+      if (s && !i.name.toLowerCase().includes(s)) return false;
+      return true;
+    });
+  }, [q, activeCat]);
 
   const result = useMemo(() => {
     if (!a || !b) return null;
