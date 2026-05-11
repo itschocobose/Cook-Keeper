@@ -94,7 +94,7 @@ export function BuffFinder() {
             return (
               <button
                 key={name}
-                onClick={() => setActiveCat(name)}
+                onClick={() => setActiveCat((c) => (c === name ? "" : name))}
                 className={`text-xs px-2 py-1 rounded border transition-all ${
                   on
                     ? "bg-accent/20 border-accent text-accent text-glow-cyan"
