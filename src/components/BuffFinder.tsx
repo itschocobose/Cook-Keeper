@@ -18,6 +18,7 @@ const PAGE_SIZE = 10;
 
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
+  const [page, setPage] = useState(0);
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
