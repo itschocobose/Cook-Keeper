@@ -53,6 +53,27 @@ export function Combiner() {
             className="bg-secondary/40 border-border"
           />
         </div>
+
+        {/* category tabs */}
+        <div className="flex flex-wrap gap-1 mb-4">
+          {INGREDIENT_CATEGORIES.map((name) => {
+            const on = activeCat === name;
+            return (
+              <button
+                key={name}
+                onClick={() => setActiveCat((c) => (c === name ? "" : name))}
+                className={`text-xs px-2 py-1 rounded border transition-all ${
+                  on
+                    ? "bg-accent/20 border-accent text-accent text-glow-cyan"
+                    : "border-border text-muted-foreground hover:text-foreground hover:border-accent/60"
+                }`}
+              >
+                {name}
+              </button>
+            );
+          })}
+        </div>
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
           {filtered.map((i) => {
             const isA = a?.name === i.name;
