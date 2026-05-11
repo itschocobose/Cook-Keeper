@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { BuffFinder } from "@/components/BuffFinder";
 import { Combiner } from "@/components/Combiner";
-import { ChefHat, Sparkles } from "lucide-react";
+import { ChefHat } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +37,7 @@ function Index() {
           <h1 className="text-2xl sm:text-3xl text-primary text-glow">
             Cook Keeper
           </h1>
-          <Sparkles className="w-7 h-7 text-accent text-glow-cyan" />
+          
         </div>
         <p className="text-muted-foreground max-w-xl mx-auto">
           Keeping track of buffs is hard. Cooking shouldn't be!
