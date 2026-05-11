@@ -9,6 +9,7 @@ import {
   combine,
   formatEffect,
 } from "@/lib/cooking";
+import { getDishName } from "@/lib/dishNames";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
 import { Search, ArrowRight } from "lucide-react";
@@ -140,7 +141,8 @@ export function Combiner() {
                   </div>
                 </div>
                 <div className="text-sm text-primary text-glow font-semibold leading-tight">
-                  {[a.name, b.name].sort().join(" & ")} Dish
+                  {getDishName(a.name, b.name) ??
+                    `${[a.name, b.name].sort().join(" & ")} Dish`}
                 </div>
               </div>
             )}
