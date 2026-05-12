@@ -84,8 +84,8 @@ export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [sortMode, setSortMode] = useState<SortMode>("default");
-  const [raritySortA, setRaritySortA] = useState<RaritySort>("default");
-  const [raritySortB, setRaritySortB] = useState<RaritySort>("default");
+  const [raritySortA, setRaritySortA] = useState<RarityPick>("default");
+  const [raritySortB, setRaritySortB] = useState<RarityPick>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
