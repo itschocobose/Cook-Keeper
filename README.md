@@ -7,7 +7,8 @@ Live site: https://cookkeeper.lovable.app
 ## Features
 
 - **Buff Finder** — Pick one or more buffs (offense, defense, healing, mobility, magic, mining, etc.) and browse the ingredient pairs that produce them. Match all selected buffs or any of them, sort by total relevant buff value (high→low / low→high), and page through results 5 at a time.
-- **Cooking Pot** — Combine any two ingredients to preview the cooked dish, including its icon, canonical name (when known), and the full combined effect list.
+- **Cooking Pot** — Combine any two ingredients to preview the cooked dish, including its icon, canonical name (when known), and the full combined effect list. Hover an ingredient for a tooltip showing the buffs it provides at the selected tier.
+- **What's New popover** — Bell icon in the header opens a popover listing the 3 most recent updates. A pulsing dot indicates unseen entries (tracked in `localStorage` under `cookkeeper:lastSeenChangelogId`). Full history at `/changelog`. Edit `src/lib/changelog.ts` to add entries — new ones go at the TOP of the array with a unique `id`.
 - **Effect engine** — Parses raw effect strings into structured buffs (value, percent, duration, permanent max-health, immunities) and applies Core Keeper's combine rules (max value per buff, additive permanent max-health, immunity union).
 
 ## Tech Stack
