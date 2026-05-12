@@ -297,31 +297,21 @@ export function BuffFinder() {
                     ["asc", "Low → High"],
                   ]}
                 />
-                <SortGroup
+                <RarityPicker
                   label="Ingredient 1 rarity"
                   value={raritySortA}
                   onChange={(v) => {
-                    setRaritySortA(v as RaritySort);
+                    setRaritySortA(v);
                     setPage(0);
                   }}
-                  options={[
-                    ["default", "Default"],
-                    ["asc", "Low → High"],
-                    ["desc", "High → Low"],
-                  ]}
                 />
-                <SortGroup
+                <RarityPicker
                   label="Ingredient 2 rarity"
                   value={raritySortB}
                   onChange={(v) => {
-                    setRaritySortB(v as RaritySort);
+                    setRaritySortB(v);
                     setPage(0);
                   }}
-                  options={[
-                    ["default", "Default"],
-                    ["asc", "Low → High"],
-                    ["desc", "High → Low"],
-                  ]}
                 />
               </div>
             </div>
