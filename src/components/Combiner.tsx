@@ -83,25 +83,45 @@ export function Combiner() {
 
       {(activeCat || q.trim()) && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
-          {filtered.map((i) => {
-            const isA = a?.name === i.name;
-            const isB = b?.name === i.name;
-            const sel = isA || isB;
-            return (
-              <button
-                key={i.name}
-                onClick={() => pickSlot(i)}
-                className={`flex items-center gap-2 p-2 rounded border text-left transition-all ${
-                  sel
-                    ? "bg-primary/20 border-primary text-primary text-glow"
-                    : "bg-secondary/40 border-border hover:border-primary/60"
-                }`}
-              >
-                <IngredientIcon ing={i} size={32} />
-                <span className="text-sm truncate">{i.name}</span>
-              </button>
-            );
-          })}
+          <TooltipProvider delayDuration={150}>
+            {filtered.map((i) => {
+              const isA = a?.name === i.name;
+              const isB = b?.name === i.name;
+              const sel = isA || isB;
+              const tierEffects = i.parsed[tier];
+              return (
+                <Tooltip key={i.name}>
+                  <TooltipTrigger asChild>
+                    <button
+                      onClick={() => pickSlot(i)}
+                      className={`flex items-center gap-2 p-2 rounded border text-left transition-all ${
+                        sel
+                          ? "bg-primary/20 border-primary text-primary text-glow"
+                          : "bg-secondary/40 border-border hover:border-primary/60"
+                      }`}
+                    >
+                      <IngredientIcon ing={i} size={32} />
+                      <span className="text-sm truncate">{i.name}</span>
+                    </button>
+                  </TooltipTrigger>
+                  <TooltipContent side="top" className="max-w-xs">
+                    <div className="text-xs font-semibold mb-1 capitalize text-primary">
+                      {tier} buffs
+                    </div>
+                    {tierEffects.length === 0 ? (
+                      <div className="text-xs text-muted-foreground">No buffs</div>
+                    ) : (
+                      <ul className="text-xs space-y-0.5">
+                        {tierEffects.map((e, idx) => (
+                          <li key={idx}>{formatEffect(e)}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </TooltipProvider>
         </div>
       )}
 
