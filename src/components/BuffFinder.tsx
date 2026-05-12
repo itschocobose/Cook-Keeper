@@ -8,8 +8,15 @@ import {
 } from "@/lib/cooking";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Plus, X, Search } from "lucide-react";
-import { rarityRank, getRarity } from "@/lib/ingredientRarity";
+import { rarityRank, getRarity, RARITY_ORDER, type Rarity } from "@/lib/ingredientRarity";
 
 function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
