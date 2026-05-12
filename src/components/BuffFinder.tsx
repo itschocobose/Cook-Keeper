@@ -157,33 +157,19 @@ export function BuffFinder() {
     effects.reduce((sum, e) => (selected.includes(e.key) ? sum + e.value : sum), 0);
 
   const sortedResults = useMemo(() => {
-    const noSort =
-      sortMode === "default" &&
-      raritySortA === "default" &&
-      raritySortB === "default";
-    if (noSort) return results;
-    // decorate-sort-undecorate to keep stable order via original index
-    const arr = results.map((r, i) => ({ r, i }));
-    const pickRank = (pick: RarityPick, name: string) => {
-      if (pick === "default") return 0;
-      // matching rarity sorts to the top (0); others sort by their distance
-      // from the picked rarity, so the closest rarities come next.
-      const target = RARITY_ORDER.indexOf(pick);
-      const here = rarityRank(name);
-      return Math.abs(here - target) + (here === target ? 0 : 1);
-    };
+    // Filter by rarity picks: matching ingredient slot must equal the picked rarity.
+    const filtered = results.filter((r) => {
+      if (raritySortA !== "default" && getRarity(r.a.name) !== raritySortA) return false;
+      if (raritySortB !== "default" && getRarity(r.b.name) !== raritySortB) return false;
+      return true;
+    });
+    if (sortMode === "default") return filtered;
+    const arr = filtered.map((r, i) => ({ r, i }));
     arr.sort((x, y) => {
-      const ra = pickRank(raritySortA, x.r.a.name) - pickRank(raritySortA, y.r.a.name);
-      if (ra !== 0) return ra;
-      const rb = pickRank(raritySortB, x.r.b.name) - pickRank(raritySortB, y.r.b.name);
-      if (rb !== 0) return rb;
-      if (sortMode !== "default") {
-        const dx = relevantTotal(x.r.effects);
-        const dy = relevantTotal(y.r.effects);
-        const d = sortMode === "desc" ? dy - dx : dx - dy;
-        if (d !== 0) return d;
-      }
-      return x.i - y.i;
+      const dx = relevantTotal(x.r.effects);
+      const dy = relevantTotal(y.r.effects);
+      const d = sortMode === "desc" ? dy - dx : dx - dy;
+      return d !== 0 ? d : x.i - y.i;
     });
     return arr.map((x) => x.r);
     // eslint-disable-next-line react-hooks/exhaustive-deps
