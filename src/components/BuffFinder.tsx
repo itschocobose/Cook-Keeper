@@ -8,8 +8,15 @@ import {
 } from "@/lib/cooking";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Plus, X, Search } from "lucide-react";
-import { rarityRank, getRarity } from "@/lib/ingredientRarity";
+import { rarityRank, getRarity, RARITY_ORDER, type Rarity } from "@/lib/ingredientRarity";
 
 function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -18,7 +25,8 @@ function titleCase(s: string) {
 const PAGE_SIZE = 5;
 
 type SortMode = "default" | "desc" | "asc";
-type RaritySort = "default" | "asc" | "desc";
+type RarityPick = "default" | Rarity;
+const RARITY_PICKS: Rarity[] = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
 
 function SortGroup({
   label,
@@ -72,12 +80,41 @@ function RarityBadge({ name }: { name: string }) {
   );
 }
 
+function RarityPicker({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: RarityPick;
+  onChange: (v: RarityPick) => void;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-muted-foreground">{label}:</span>
+      <Select value={value} onValueChange={(v) => onChange(v as RarityPick)}>
+        <SelectTrigger className="h-8 w-[140px] text-xs">
+          <SelectValue placeholder="Sort by..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="default">Sort by...</SelectItem>
+          {RARITY_PICKS.map((r) => (
+            <SelectItem key={r} value={r}>
+              {r}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [sortMode, setSortMode] = useState<SortMode>("default");
-  const [raritySortA, setRaritySortA] = useState<RaritySort>("default");
-  const [raritySortB, setRaritySortB] = useState<RaritySort>("default");
+  const [raritySortA, setRaritySortA] = useState<RarityPick>("default");
+  const [raritySortB, setRaritySortB] = useState<RarityPick>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
@@ -127,15 +164,18 @@ export function BuffFinder() {
     if (noSort) return results;
     // decorate-sort-undecorate to keep stable order via original index
     const arr = results.map((r, i) => ({ r, i }));
-    const cmpRarity = (dir: RaritySort, name1: string, name2: string) => {
-      if (dir === "default") return 0;
-      const d = rarityRank(name1) - rarityRank(name2);
-      return dir === "asc" ? d : -d;
+    const pickRank = (pick: RarityPick, name: string) => {
+      if (pick === "default") return 0;
+      // matching rarity sorts to the top (0); others sort by their distance
+      // from the picked rarity, so the closest rarities come next.
+      const target = RARITY_ORDER.indexOf(pick);
+      const here = rarityRank(name);
+      return Math.abs(here - target) + (here === target ? 0 : 1);
     };
     arr.sort((x, y) => {
-      const ra = cmpRarity(raritySortA, x.r.a.name, y.r.a.name);
+      const ra = pickRank(raritySortA, x.r.a.name) - pickRank(raritySortA, y.r.a.name);
       if (ra !== 0) return ra;
-      const rb = cmpRarity(raritySortB, x.r.b.name, y.r.b.name);
+      const rb = pickRank(raritySortB, x.r.b.name) - pickRank(raritySortB, y.r.b.name);
       if (rb !== 0) return rb;
       if (sortMode !== "default") {
         const dx = relevantTotal(x.r.effects);
@@ -286,31 +326,21 @@ export function BuffFinder() {
                     ["asc", "Low → High"],
                   ]}
                 />
-                <SortGroup
+                <RarityPicker
                   label="Ingredient 1 rarity"
                   value={raritySortA}
                   onChange={(v) => {
-                    setRaritySortA(v as RaritySort);
+                    setRaritySortA(v);
                     setPage(0);
                   }}
-                  options={[
-                    ["default", "Default"],
-                    ["asc", "Low → High"],
-                    ["desc", "High → Low"],
-                  ]}
                 />
-                <SortGroup
+                <RarityPicker
                   label="Ingredient 2 rarity"
                   value={raritySortB}
                   onChange={(v) => {
-                    setRaritySortB(v as RaritySort);
+                    setRaritySortB(v);
                     setPage(0);
                   }}
-                  options={[
-                    ["default", "Default"],
-                    ["asc", "Low → High"],
-                    ["desc", "High → Low"],
-                  ]}
                 />
               </div>
             </div>
