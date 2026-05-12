@@ -299,19 +299,25 @@ export function BuffFinder() {
                 {matchAll ? " matching all buffs" : " matching at least one buff"}.
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
-                <SortGroup
-                  label="Sort by total"
-                  value={sortMode}
-                  onChange={(v) => {
-                    setSortMode(v as SortMode);
-                    setPage(0);
-                  }}
-                  options={[
-                    ["default", "Default"],
-                    ["desc", "High → Low"],
-                    ["asc", "Low → High"],
-                  ]}
-                />
+                <div className="flex items-center gap-2">
+                  <span className="text-muted-foreground">Sort by total:</span>
+                  <Select
+                    value={sortMode}
+                    onValueChange={(v) => {
+                      setSortMode(v as SortMode);
+                      setPage(0);
+                    }}
+                  >
+                    <SelectTrigger className="h-8 w-[140px] text-xs">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="default">Default</SelectItem>
+                      <SelectItem value="desc">High → Low</SelectItem>
+                      <SelectItem value="asc">Low → High</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
                 <RarityPicker
                   label="Ingredient 1 rarity"
                   value={raritySortA}
