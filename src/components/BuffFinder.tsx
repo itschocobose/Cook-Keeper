@@ -321,6 +321,7 @@ export function BuffFinder() {
                     <div className="flex items-center gap-2">
                       <IngredientIcon ing={r.a} />
                       <span className="text-foreground">{r.a.name}</span>
+                      <RarityBadge name={r.a.name} />
                     </div>
                     <span className="text-primary text-glow font-bold">+</span>
                     <div className="flex items-center gap-2">
