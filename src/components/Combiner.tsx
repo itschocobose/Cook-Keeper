@@ -186,3 +186,62 @@ function Slot({ ing, onClear }: { ing: Ingredient | null; onClear: () => void })
     </button>
   );
 }
+
+function IngredientTile({
+  ing,
+  tier,
+  selected,
+  onPick,
+}: {
+  ing: Ingredient;
+  tier: Tier;
+  selected: boolean;
+  onPick: () => void;
+}) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [width, setWidth] = useState<number>();
+  const tierEffects = ing.parsed[tier];
+
+  const measure = () => {
+    if (btnRef.current) setWidth(btnRef.current.offsetWidth);
+  };
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          ref={btnRef}
+          onClick={onPick}
+          onPointerEnter={measure}
+          onFocus={measure}
+          className={`flex items-center gap-2 p-2 rounded border text-left transition-all ${
+            selected
+              ? "bg-primary/20 border-primary text-primary text-glow"
+              : "bg-secondary/40 border-border hover:border-primary/60"
+          }`}
+        >
+          <IngredientIcon ing={ing} size={32} />
+          <span className="text-sm truncate">{ing.name}</span>
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        align="center"
+        sideOffset={8}
+        collisionPadding={16}
+        style={width ? { width, maxWidth: width } : undefined}
+        className="p-3 text-left"
+      >
+        {tierEffects.length === 0 ? (
+          <div className="text-sm text-muted-foreground">No buffs</div>
+        ) : (
+          <ul className="text-sm space-y-1 break-words whitespace-normal">
+            {tierEffects.map((e, idx) => (
+              <li key={idx}>{formatEffect(e)}</li>
+            ))}
+          </ul>
+        )}
+      </TooltipContent>
+    </Tooltip>
+  );
+}
