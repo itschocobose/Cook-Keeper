@@ -135,15 +135,18 @@ export function BuffFinder() {
     if (noSort) return results;
     // decorate-sort-undecorate to keep stable order via original index
     const arr = results.map((r, i) => ({ r, i }));
-    const cmpRarity = (dir: RaritySort, name1: string, name2: string) => {
-      if (dir === "default") return 0;
-      const d = rarityRank(name1) - rarityRank(name2);
-      return dir === "asc" ? d : -d;
+    const pickRank = (pick: RarityPick, name: string) => {
+      if (pick === "default") return 0;
+      // matching rarity sorts to the top (0); others sort by their distance
+      // from the picked rarity, so the closest rarities come next.
+      const target = RARITY_ORDER.indexOf(pick);
+      const here = rarityRank(name);
+      return Math.abs(here - target) + (here === target ? 0 : 1);
     };
     arr.sort((x, y) => {
-      const ra = cmpRarity(raritySortA, x.r.a.name, y.r.a.name);
+      const ra = pickRank(raritySortA, x.r.a.name) - pickRank(raritySortA, y.r.a.name);
       if (ra !== 0) return ra;
-      const rb = cmpRarity(raritySortB, x.r.b.name, y.r.b.name);
+      const rb = pickRank(raritySortB, x.r.b.name) - pickRank(raritySortB, y.r.b.name);
       if (rb !== 0) return rb;
       if (sortMode !== "default") {
         const dx = relevantTotal(x.r.effects);
