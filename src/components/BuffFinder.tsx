@@ -20,6 +20,58 @@ const PAGE_SIZE = 5;
 type SortMode = "default" | "desc" | "asc";
 type RaritySort = "default" | "asc" | "desc";
 
+function SortGroup({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: [string, string][];
+}) {
+  return (
+    <div className="flex items-center gap-1">
+      <span className="text-muted-foreground">{label}:</span>
+      {options.map(([mode, text]) => {
+        const on = value === mode;
+        return (
+          <button
+            key={mode}
+            onClick={() => onChange(mode)}
+            className={`px-2 py-1 rounded border transition-all ${
+              on
+                ? "bg-primary/20 border-primary text-primary text-glow"
+                : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
+            }`}
+          >
+            {text}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+const RARITY_TONE: Record<string, string> = {
+  Common: "text-muted-foreground border-border",
+  Uncommon: "text-emerald-400 border-emerald-500/40",
+  Rare: "text-sky-400 border-sky-500/40",
+  Epic: "text-fuchsia-400 border-fuchsia-500/40",
+  Legendary: "text-amber-400 border-amber-500/40",
+  Unknown: "text-muted-foreground border-border/60",
+};
+
+function RarityBadge({ name }: { name: string }) {
+  const r = getRarity(name);
+  return (
+    <span className={`text-[10px] px-1.5 py-0.5 rounded border ${RARITY_TONE[r]}`}>
+      {r}
+    </span>
+  );
+}
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
