@@ -68,16 +68,34 @@ export function BuffFinder() {
     effects.reduce((sum, e) => (selected.includes(e.key) ? sum + e.value : sum), 0);
 
   const sortedResults = useMemo(() => {
-    if (sortMode === "default") return results;
-    const arr = [...results];
+    const noSort =
+      sortMode === "default" &&
+      raritySortA === "default" &&
+      raritySortB === "default";
+    if (noSort) return results;
+    // decorate-sort-undecorate to keep stable order via original index
+    const arr = results.map((r, i) => ({ r, i }));
+    const cmpRarity = (dir: RaritySort, name1: string, name2: string) => {
+      if (dir === "default") return 0;
+      const d = rarityRank(name1) - rarityRank(name2);
+      return dir === "asc" ? d : -d;
+    };
     arr.sort((x, y) => {
-      const dx = relevantTotal(x.effects);
-      const dy = relevantTotal(y.effects);
-      return sortMode === "desc" ? dy - dx : dx - dy;
+      const ra = cmpRarity(raritySortA, x.r.a.name, y.r.a.name);
+      if (ra !== 0) return ra;
+      const rb = cmpRarity(raritySortB, x.r.b.name, y.r.b.name);
+      if (rb !== 0) return rb;
+      if (sortMode !== "default") {
+        const dx = relevantTotal(x.r.effects);
+        const dy = relevantTotal(y.r.effects);
+        const d = sortMode === "desc" ? dy - dx : dx - dy;
+        if (d !== 0) return d;
+      }
+      return x.i - y.i;
     });
-    return arr;
+    return arr.map((x) => x.r);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results, sortMode, selected]);
+  }, [results, sortMode, raritySortA, raritySortB, selected]);
 
   const totalPages = Math.max(1, Math.ceil(sortedResults.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages - 1);
