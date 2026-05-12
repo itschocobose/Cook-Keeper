@@ -104,14 +104,20 @@ export function Combiner() {
                       <span className="text-sm truncate">{i.name}</span>
                     </button>
                   </TooltipTrigger>
-                  <TooltipContent side="top" className="max-w-xs">
-                    <div className="text-xs font-semibold mb-1 capitalize text-primary">
+                  <TooltipContent
+                    side="top"
+                    align="center"
+                    sideOffset={8}
+                    collisionPadding={16}
+                    className="max-w-sm sm:max-w-md p-4"
+                  >
+                    <div className="text-base font-semibold mb-2 capitalize text-primary text-center">
                       {tier} buffs
                     </div>
                     {tierEffects.length === 0 ? (
-                      <div className="text-xs text-muted-foreground">No buffs</div>
+                      <div className="text-sm text-muted-foreground text-center">No buffs</div>
                     ) : (
-                      <ul className="text-xs space-y-0.5">
+                      <ul className="text-sm space-y-1 text-center">
                         {tierEffects.map((e, idx) => (
                           <li key={idx}>{formatEffect(e)}</li>
                         ))}
