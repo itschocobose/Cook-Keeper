@@ -109,15 +109,12 @@ export function Combiner() {
                     align="center"
                     sideOffset={8}
                     collisionPadding={16}
-                    className="max-w-sm sm:max-w-md p-4"
+                    className="max-w-sm sm:max-w-md p-4 flex items-center justify-center text-center"
                   >
-                    <div className="text-base font-semibold mb-2 capitalize text-primary text-center">
-                      {tier} buffs
-                    </div>
                     {tierEffects.length === 0 ? (
-                      <div className="text-sm text-muted-foreground text-center">No buffs</div>
+                      <div className="text-sm text-muted-foreground">No buffs</div>
                     ) : (
-                      <ul className="text-sm space-y-1 text-center">
+                      <ul className="text-sm space-y-1">
                         {tierEffects.map((e, idx) => (
                           <li key={idx}>{formatEffect(e)}</li>
                         ))}
