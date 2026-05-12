@@ -186,7 +186,7 @@ export function BuffFinder() {
     <div className="space-y-6">
       {/* buff filters */}
       <aside className="panel p-4">
-        <h3 className="text-sm text-glow text-primary mb-3">Find the Buff You Want</h3>
+        <h3 className="text-sm text-glow text-primary mb-3">Buff Finder</h3>
         {selected.length > 0 && (
           <div className="flex items-center gap-2 mb-4 text-sm">
             <span className="text-xs text-muted-foreground">
