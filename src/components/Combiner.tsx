@@ -114,7 +114,7 @@ export function Combiner() {
                     {tierEffects.length === 0 ? (
                       <div className="text-sm text-muted-foreground">No buffs</div>
                     ) : (
-                      <ul className="text-sm space-y-1">
+                      <ul className="text-sm space-y-1 text-left">
                         {tierEffects.map((e, idx) => (
                           <li key={idx}>{formatEffect(e)}</li>
                         ))}
