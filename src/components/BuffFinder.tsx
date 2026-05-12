@@ -80,6 +80,35 @@ function RarityBadge({ name }: { name: string }) {
   );
 }
 
+function RarityPicker({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: RarityPick;
+  onChange: (v: RarityPick) => void;
+}) {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-muted-foreground">{label}:</span>
+      <Select value={value} onValueChange={(v) => onChange(v as RarityPick)}>
+        <SelectTrigger className="h-8 w-[140px] text-xs">
+          <SelectValue placeholder="Sort by..." />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="default">Sort by...</SelectItem>
+          {RARITY_PICKS.map((r) => (
+            <SelectItem key={r} value={r}>
+              {r}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
+  );
+}
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
