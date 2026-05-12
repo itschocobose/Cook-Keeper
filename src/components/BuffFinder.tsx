@@ -25,7 +25,8 @@ function titleCase(s: string) {
 const PAGE_SIZE = 5;
 
 type SortMode = "default" | "desc" | "asc";
-type RaritySort = "default" | "asc" | "desc";
+type RarityPick = "default" | Rarity;
+const RARITY_PICKS: Rarity[] = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
 
 function SortGroup({
   label,
