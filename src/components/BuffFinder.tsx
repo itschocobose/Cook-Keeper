@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Plus, X, Search } from "lucide-react";
-import { rarityRank, getRarity, RARITY_ORDER, type Rarity } from "@/lib/ingredientRarity";
+import { getRarity, type Rarity } from "@/lib/ingredientRarity";
 
 function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
