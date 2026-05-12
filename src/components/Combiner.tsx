@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   ING,
   INGREDIENT_CATEGORIES,
@@ -88,40 +88,14 @@ export function Combiner() {
               const isA = a?.name === i.name;
               const isB = b?.name === i.name;
               const sel = isA || isB;
-              const tierEffects = i.parsed[tier];
               return (
-                <Tooltip key={i.name}>
-                  <TooltipTrigger asChild>
-                    <button
-                      onClick={() => pickSlot(i)}
-                      className={`flex items-center gap-2 p-2 rounded border text-left transition-all ${
-                        sel
-                          ? "bg-primary/20 border-primary text-primary text-glow"
-                          : "bg-secondary/40 border-border hover:border-primary/60"
-                      }`}
-                    >
-                      <IngredientIcon ing={i} size={32} />
-                      <span className="text-sm truncate">{i.name}</span>
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent
-                    side="top"
-                    align="center"
-                    sideOffset={8}
-                    collisionPadding={16}
-                    className="max-w-sm sm:max-w-md p-4 flex items-center justify-center text-center"
-                  >
-                    {tierEffects.length === 0 ? (
-                      <div className="text-sm text-muted-foreground">No buffs</div>
-                    ) : (
-                      <ul className="text-sm space-y-1 text-left">
-                        {tierEffects.map((e, idx) => (
-                          <li key={idx}>{formatEffect(e)}</li>
-                        ))}
-                      </ul>
-                    )}
-                  </TooltipContent>
-                </Tooltip>
+                <IngredientTile
+                  key={i.name}
+                  ing={i}
+                  tier={tier}
+                  selected={sel}
+                  onPick={() => pickSlot(i)}
+                />
               );
             })}
           </TooltipProvider>
@@ -210,5 +184,64 @@ function Slot({ ing, onClear }: { ing: Ingredient | null; onClear: () => void })
         <span className="text-xs text-muted-foreground">Empty</span>
       )}
     </button>
+  );
+}
+
+function IngredientTile({
+  ing,
+  tier,
+  selected,
+  onPick,
+}: {
+  ing: Ingredient;
+  tier: Tier;
+  selected: boolean;
+  onPick: () => void;
+}) {
+  const btnRef = useRef<HTMLButtonElement>(null);
+  const [width, setWidth] = useState<number>();
+  const tierEffects = ing.parsed[tier];
+
+  const measure = () => {
+    if (btnRef.current) setWidth(btnRef.current.offsetWidth);
+  };
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <button
+          ref={btnRef}
+          onClick={onPick}
+          onPointerEnter={measure}
+          onFocus={measure}
+          className={`flex items-center gap-2 p-2 rounded border text-left transition-all ${
+            selected
+              ? "bg-primary/20 border-primary text-primary text-glow"
+              : "bg-secondary/40 border-border hover:border-primary/60"
+          }`}
+        >
+          <IngredientIcon ing={ing} size={32} />
+          <span className="text-sm truncate">{ing.name}</span>
+        </button>
+      </TooltipTrigger>
+      <TooltipContent
+        side="top"
+        align="center"
+        sideOffset={8}
+        collisionPadding={16}
+        style={width ? { width, maxWidth: width } : undefined}
+        className="p-3 text-left"
+      >
+        {tierEffects.length === 0 ? (
+          <div className="text-sm text-muted-foreground">No buffs</div>
+        ) : (
+          <ul className="text-sm space-y-1 break-words whitespace-normal">
+            {tierEffects.map((e, idx) => (
+              <li key={idx}>{formatEffect(e)}</li>
+            ))}
+          </ul>
+        )}
+      </TooltipContent>
+    </Tooltip>
   );
 }
