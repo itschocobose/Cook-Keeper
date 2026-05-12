@@ -9,6 +9,7 @@ import {
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
 import { Plus, X, Search } from "lucide-react";
+import { rarityRank, getRarity } from "@/lib/ingredientRarity";
 
 function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -17,11 +18,66 @@ function titleCase(s: string) {
 const PAGE_SIZE = 5;
 
 type SortMode = "default" | "desc" | "asc";
+type RaritySort = "default" | "asc" | "desc";
+
+function SortGroup({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: [string, string][];
+}) {
+  return (
+    <div className="flex items-center gap-1">
+      <span className="text-muted-foreground">{label}:</span>
+      {options.map(([mode, text]) => {
+        const on = value === mode;
+        return (
+          <button
+            key={mode}
+            onClick={() => onChange(mode)}
+            className={`px-2 py-1 rounded border transition-all ${
+              on
+                ? "bg-primary/20 border-primary text-primary text-glow"
+                : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
+            }`}
+          >
+            {text}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+const RARITY_TONE: Record<string, string> = {
+  Common: "text-muted-foreground border-border",
+  Uncommon: "text-emerald-400 border-emerald-500/40",
+  Rare: "text-sky-400 border-sky-500/40",
+  Epic: "text-fuchsia-400 border-fuchsia-500/40",
+  Legendary: "text-amber-400 border-amber-500/40",
+  Unknown: "text-muted-foreground border-border/60",
+};
+
+function RarityBadge({ name }: { name: string }) {
+  const r = getRarity(name);
+  return (
+    <span className={`text-[10px] px-1.5 py-0.5 rounded border ${RARITY_TONE[r]}`}>
+      {r}
+    </span>
+  );
+}
 
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [sortMode, setSortMode] = useState<SortMode>("default");
+  const [raritySortA, setRaritySortA] = useState<RaritySort>("default");
+  const [raritySortB, setRaritySortB] = useState<RaritySort>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
@@ -64,16 +120,34 @@ export function BuffFinder() {
     effects.reduce((sum, e) => (selected.includes(e.key) ? sum + e.value : sum), 0);
 
   const sortedResults = useMemo(() => {
-    if (sortMode === "default") return results;
-    const arr = [...results];
+    const noSort =
+      sortMode === "default" &&
+      raritySortA === "default" &&
+      raritySortB === "default";
+    if (noSort) return results;
+    // decorate-sort-undecorate to keep stable order via original index
+    const arr = results.map((r, i) => ({ r, i }));
+    const cmpRarity = (dir: RaritySort, name1: string, name2: string) => {
+      if (dir === "default") return 0;
+      const d = rarityRank(name1) - rarityRank(name2);
+      return dir === "asc" ? d : -d;
+    };
     arr.sort((x, y) => {
-      const dx = relevantTotal(x.effects);
-      const dy = relevantTotal(y.effects);
-      return sortMode === "desc" ? dy - dx : dx - dy;
+      const ra = cmpRarity(raritySortA, x.r.a.name, y.r.a.name);
+      if (ra !== 0) return ra;
+      const rb = cmpRarity(raritySortB, x.r.b.name, y.r.b.name);
+      if (rb !== 0) return rb;
+      if (sortMode !== "default") {
+        const dx = relevantTotal(x.r.effects);
+        const dy = relevantTotal(y.r.effects);
+        const d = sortMode === "desc" ? dy - dx : dx - dy;
+        if (d !== 0) return d;
+      }
+      return x.i - y.i;
     });
-    return arr;
+    return arr.map((x) => x.r);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results, sortMode, selected]);
+  }, [results, sortMode, raritySortA, raritySortB, selected]);
 
   const totalPages = Math.max(1, Math.ceil(sortedResults.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages - 1);
@@ -191,38 +265,53 @@ export function BuffFinder() {
           </div>
         ) : (
           <>
-            <div className="text-sm text-muted-foreground mb-3 flex flex-wrap items-center gap-2">
-              <span>
+            <div className="mb-3 space-y-2">
+              <div className="text-sm text-muted-foreground">
                 Showing {currentPage * PAGE_SIZE + 1}–
                 {currentPage * PAGE_SIZE + pageResults.length} of {sortedResults.length} recipe
                 {sortedResults.length === 1 ? "" : "s"}
                 {matchAll ? " matching all buffs" : " matching at least one buff"}.
-              </span>
-              <div className="ml-auto flex items-center gap-1 text-xs">
-                <span className="text-muted-foreground">Sort by total:</span>
-                {([
-                  ["default", "Default"],
-                  ["desc", "High → Low"],
-                  ["asc", "Low → High"],
-                ] as [SortMode, string][]).map(([mode, label]) => {
-                  const on = sortMode === mode;
-                  return (
-                    <button
-                      key={mode}
-                      onClick={() => {
-                        setSortMode(mode);
-                        setPage(0);
-                      }}
-                      className={`px-2 py-1 rounded border transition-all ${
-                        on
-                          ? "bg-primary/20 border-primary text-primary text-glow"
-                          : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
+              </div>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
+                <SortGroup
+                  label="Sort by total"
+                  value={sortMode}
+                  onChange={(v) => {
+                    setSortMode(v as SortMode);
+                    setPage(0);
+                  }}
+                  options={[
+                    ["default", "Default"],
+                    ["desc", "High → Low"],
+                    ["asc", "Low → High"],
+                  ]}
+                />
+                <SortGroup
+                  label="Ingredient 1 rarity"
+                  value={raritySortA}
+                  onChange={(v) => {
+                    setRaritySortA(v as RaritySort);
+                    setPage(0);
+                  }}
+                  options={[
+                    ["default", "Default"],
+                    ["asc", "Low → High"],
+                    ["desc", "High → Low"],
+                  ]}
+                />
+                <SortGroup
+                  label="Ingredient 2 rarity"
+                  value={raritySortB}
+                  onChange={(v) => {
+                    setRaritySortB(v as RaritySort);
+                    setPage(0);
+                  }}
+                  options={[
+                    ["default", "Default"],
+                    ["asc", "Low → High"],
+                    ["desc", "High → Low"],
+                  ]}
+                />
               </div>
             </div>
             <ul className="grid gap-3">
@@ -232,11 +321,13 @@ export function BuffFinder() {
                     <div className="flex items-center gap-2">
                       <IngredientIcon ing={r.a} />
                       <span className="text-foreground">{r.a.name}</span>
+                      <RarityBadge name={r.a.name} />
                     </div>
                     <span className="text-primary text-glow font-bold">+</span>
                     <div className="flex items-center gap-2">
                       <IngredientIcon ing={r.b} />
                       <span className="text-foreground">{r.b.name}</span>
+                      <RarityBadge name={r.b.name} />
                     </div>
                     {!matchAll && (
                       <span className="ml-auto text-xs px-2 py-0.5 rounded bg-accent/20 text-accent border border-accent/40">
