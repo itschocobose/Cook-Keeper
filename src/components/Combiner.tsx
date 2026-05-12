@@ -12,6 +12,12 @@ import {
 import { getDishName } from "@/lib/dishNames";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Search, ArrowRight } from "lucide-react";
 
 export function Combiner() {
