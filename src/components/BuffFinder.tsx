@@ -9,6 +9,7 @@ import {
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
 import { Plus, X, Search } from "lucide-react";
+import { rarityRank, getRarity } from "@/lib/ingredientRarity";
 
 function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
@@ -17,11 +18,14 @@ function titleCase(s: string) {
 const PAGE_SIZE = 5;
 
 type SortMode = "default" | "desc" | "asc";
+type RaritySort = "default" | "asc" | "desc";
 
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [sortMode, setSortMode] = useState<SortMode>("default");
+  const [raritySortA, setRaritySortA] = useState<RaritySort>("default");
+  const [raritySortB, setRaritySortB] = useState<RaritySort>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
