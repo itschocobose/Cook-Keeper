@@ -1,4 +1,4 @@
-# Cook Keeper
+# Cook Keeper - A Core Keeper Tool
 
 A fan-made recipe finder for [Core Keeper](https://corekeeper.dev/)'s cooking pot. Search ingredient pairs by the buffs you want, or combine any two ingredients to preview the resulting dish and its effects.
 
