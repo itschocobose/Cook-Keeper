@@ -327,6 +327,7 @@ export function BuffFinder() {
                     <div className="flex items-center gap-2">
                       <IngredientIcon ing={r.b} />
                       <span className="text-foreground">{r.b.name}</span>
+                      <RarityBadge name={r.b.name} />
                     </div>
                     {!matchAll && (
                       <span className="ml-auto text-xs px-2 py-0.5 rounded bg-accent/20 text-accent border border-accent/40">
