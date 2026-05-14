@@ -11,6 +11,21 @@ export const Route = createFileRoute("/changelog")({
       { property: "og:title", content: "Changelog — Cook Keeper" },
       { property: "og:description", content: "Recent updates, new features, and fixes for Cook Keeper." },
     ],
+    links: [
+      { rel: "canonical", href: "https://cookkeeper.lovable.app/changelog" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: "Cook Keeper Changelog",
+          url: "https://cookkeeper.lovable.app/changelog",
+          description: "Recent updates, new features, and fixes for Cook Keeper.",
+        }),
+      },
+    ],
   }),
   component: ChangelogPage,
 });
