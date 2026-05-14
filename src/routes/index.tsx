@@ -34,7 +34,7 @@ function Index() {
         <div className="inline-flex items-center gap-3 mb-3">
           <ChefHat className="w-8 h-8 text-primary text-glow" />
           <h1 className="text-2xl sm:text-3xl text-primary text-glow">
-            Cook Keeper
+            Cook Keeper — Core Keeper Recipe Finder
           </h1>
         </div>
         <p className="text-muted-foreground max-w-xl mx-auto">

@@ -1,0 +1,8 @@
+# Cook Keeper
+
+> Cook Keeper is a fan-made tool for the game Core Keeper that helps players find cooking pot recipes by buff and preview the result of combining any two ingredients.
+
+## Pages
+
+- [Home](/): Filter every Core Keeper cooking pot ingredient by the buffs you want, or combine two ingredients to preview the cooked dish and its effects.
+- [Changelog](/changelog): Recent updates, new features, and fixes for Cook Keeper.

@@ -21,7 +21,7 @@ function ChangelogPage() {
       <header className="px-4 sm:px-8 pt-10 pb-6 text-center">
         <Link to="/" className="inline-flex items-center gap-3 mb-3">
           <ChefHat className="w-8 h-8 text-primary text-glow" />
-          <h1 className="text-2xl sm:text-3xl text-primary text-glow">Cook Keeper</h1>
+          <h1 className="text-2xl sm:text-3xl text-primary text-glow">Cook Keeper Changelog</h1>
         </Link>
       </header>
 
