@@ -26,7 +26,7 @@ export function IngredientIcon({
       ) : (
         <img
           src={ing.img}
-          alt={ing.name}
+          alt={`Ingredient: ${ing.name}`}
           width={size - 8}
           height={size - 8}
           className="pixelated"

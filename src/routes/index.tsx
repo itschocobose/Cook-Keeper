@@ -20,6 +20,25 @@ export const Route = createFileRoute("/")({
           "Filter every cooking pot ingredient by buff, or combine two to preview the dish.",
       },
     ],
+    links: [
+      { rel: "canonical", href: "https://cookkeeper.lovable.app/" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Cook Keeper",
+          applicationCategory: "UtilityApplication",
+          operatingSystem: "Web",
+          url: "https://cookkeeper.lovable.app/",
+          description:
+            "Find Core Keeper cooking pot recipes by buff and preview combined dishes.",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+        }),
+      },
+    ],
   }),
   component: Index,
 });
@@ -34,7 +53,7 @@ function Index() {
         <div className="inline-flex items-center gap-3 mb-3">
           <ChefHat className="w-8 h-8 text-primary text-glow" />
           <h1 className="text-2xl sm:text-3xl text-primary text-glow">
-            Cook Keeper
+            Cook Keeper — Core Keeper Recipe Finder
           </h1>
         </div>
         <p className="text-muted-foreground max-w-xl mx-auto">

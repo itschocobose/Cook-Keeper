@@ -49,7 +49,7 @@ export function Combiner() {
 
   return (
     <section className="panel p-4">
-      <h3 className="text-sm text-glow text-primary mb-3">Cooking Pot</h3>
+      <h2 className="text-sm text-glow text-primary mb-3">Cooking Pot</h2>
 
       <div className="flex items-center gap-2 mb-4">
         <Search className="w-4 h-4 text-muted-foreground" />

@@ -94,6 +94,27 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "Cook Keeper",
+          url: "https://cookkeeper.lovable.app",
+          description: "Find Core Keeper cooking pot recipes by buff and preview combined dishes.",
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Cook Keeper",
+          url: "https://cookkeeper.lovable.app",
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
