@@ -141,11 +141,11 @@ export function Combiner() {
               onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
               className="text-xs px-2 py-1 mb-4 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
             >
-              {nutrientLevel}/5
+              Utilizing Every Nutrient {nutrientLevel}/5
             </button>
           </TooltipTrigger>
           <TooltipContent side="top" className="text-xs">
-            Utilizing Every Nutrient — +{nutrientLevel * 5}% to food value
+            Provides +{nutrientLevel * 5}% to food value
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
