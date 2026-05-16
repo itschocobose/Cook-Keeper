@@ -41,11 +41,15 @@ export function Combiner() {
   const result = useMemo(() => {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
-    if (nutrientLevel === 0) return combined;
-    const mult = 1 + 0.05 * nutrientLevel;
+    const bothHighTier =
+      (a.name.includes("Golden") || getRarity(a.name) === "Legendary") &&
+      (b.name.includes("Golden") || getRarity(b.name) === "Legendary");
+    const nutrientMult = 1 + 0.05 * nutrientLevel;
+    const bonusMult = bothHighTier ? 1.15 : 1;
+    const totalMult = nutrientMult * bonusMult;
     return combined.map((e) =>
       e.key.toLowerCase() === "food" && !e.immunity
-        ? { ...e, value: e.value * mult }
+        ? { ...e, value: e.value * totalMult }
         : e
     );
   }, [a, b, tier, nutrientLevel]);
