@@ -27,6 +27,7 @@ export function Combiner() {
   const [q, setQ] = useState("");
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
   const [nutrientLevel, setNutrientLevel] = useState(0);
+  const [vegLevel, setVegLevel] = useState(0);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
@@ -40,14 +41,18 @@ export function Combiner() {
   const result = useMemo(() => {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
-    if (nutrientLevel === 0) return combined;
-    const mult = 1 + 0.05 * nutrientLevel;
+    const hasVeg =
+      ingredientCategory(a.name) === "Plant" ||
+      ingredientCategory(b.name) === "Plant";
+    const pct = 0.05 * nutrientLevel + (hasVeg ? 0.05 * vegLevel : 0);
+    if (pct === 0) return combined;
+    const mult = 1 + pct;
     return combined.map((e) =>
       e.key.toLowerCase() === "food" && !e.immunity
         ? { ...e, value: e.value * mult }
         : e
     );
-  }, [a, b, tier, nutrientLevel]);
+  }, [a, b, tier, nutrientLevel, vegLevel]);
 
   const pickSlot = (i: Ingredient) => {
     if (!a) setA(i);
@@ -133,21 +138,36 @@ export function Combiner() {
         ))}
       </div>
 
-      {/* Utilizing Every Nutrient skill */}
+      {/* Skill buttons */}
       <TooltipProvider delayDuration={150}>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
-              className="text-xs px-2 py-1 mb-4 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
-            >
-              Utilizing Every Nutrient {nutrientLevel}/5
-            </button>
-          </TooltipTrigger>
-          <TooltipContent side="top" className="text-xs">
-            Provides +{nutrientLevel * 5}% to food value
-          </TooltipContent>
-        </Tooltip>
+        <div className="flex flex-col items-start gap-2 mb-4">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Utilizing Every Nutrient {nutrientLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Provides +{nutrientLevel * 5}% to food value
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setVegLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Eat Your Vegetables {vegLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Provides +{vegLevel * 5}% to food value when a vegetable is used
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </TooltipProvider>
 
       <div className="border-t border-border pt-3">
