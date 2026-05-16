@@ -136,7 +136,7 @@ export function Combiner() {
       {/* tier indicator (auto-determined by ingredient rarity) */}
       <div className="flex gap-1 mb-4">
         {(["regular", "rare", "epic"] as Tier[]).map((t) => {
-          const active = tier === t;
+          const active = hasRecipe && tier === t;
           const colorClass =
             t === "regular"
               ? "bg-[#42cb5a]/20 border-[#42cb5a] text-[#42cb5a]"
