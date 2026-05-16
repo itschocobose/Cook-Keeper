@@ -5,7 +5,6 @@ import {
   categorize,
   formatEffect,
   ING,
-  isGolden,
   type Ingredient,
   type ParsedEffect,
 } from "@/lib/cooking";
@@ -49,14 +48,6 @@ function RarityBadge({ name }: { name: string }) {
   );
 }
 
-function GoldenBadge({ name }: { name: string }) {
-  if (!isGolden(name)) return null;
-  return (
-    <span className="text-[10px] px-1.5 py-0.5 rounded border text-amber-400 border-amber-500/40 bg-amber-500/10">
-      Golden
-    </span>
-  );
-}
 
 function RarityPicker({
   label,
@@ -337,7 +328,6 @@ export function BuffFinder() {
                       <IngredientIcon ing={r.ing} />
                       <span className="text-foreground">{r.ing.name}</span>
                       <RarityBadge name={r.ing.name} />
-                      <GoldenBadge name={r.ing.name} />
                     </div>
                     {!matchAll && (
                       <span className="ml-auto text-xs px-2 py-0.5 rounded bg-accent/20 text-accent border border-accent/40">
