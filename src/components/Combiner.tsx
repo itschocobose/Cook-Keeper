@@ -3,6 +3,7 @@ import {
   ING,
   INGREDIENT_CATEGORIES,
   ingredientCategory,
+  isGolden,
   type Ingredient,
   type IngredientCategory,
   type Tier,
@@ -19,6 +20,15 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Search, ArrowRight } from "lucide-react";
+
+function GoldenBadge({ name }: { name: string }) {
+  if (!isGolden(name)) return null;
+  return (
+    <span className="text-[10px] px-1.5 py-0.5 rounded border text-amber-400 border-amber-500/40 bg-amber-500/10">
+      Golden
+    </span>
+  );
+}
 
 export function Combiner() {
   const [a, setA] = useState<Ingredient | null>(null);
@@ -179,6 +189,7 @@ function Slot({ ing, onClear }: { ing: Ingredient | null; onClear: () => void })
           <span className="text-xs truncate max-w-full px-1 group-hover:text-destructive">
             {ing.name}
           </span>
+          <GoldenBadge name={ing.name} />
         </>
       ) : (
         <span className="text-xs text-muted-foreground">Empty</span>
@@ -222,6 +233,7 @@ function IngredientTile({
         >
           <IngredientIcon ing={ing} size={32} />
           <span className="text-sm truncate">{ing.name}</span>
+          <GoldenBadge name={ing.name} />
         </button>
       </TooltipTrigger>
       <TooltipContent
