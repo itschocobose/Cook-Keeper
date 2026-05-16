@@ -132,20 +132,19 @@ export function Combiner() {
         <Slot ing={b} onClear={() => setB(null)} />
       </div>
 
-      {/* tier picker */}
+      {/* tier indicator (auto-determined by ingredient rarity) */}
       <div className="flex gap-1 mb-4">
         {(["regular", "rare", "epic"] as Tier[]).map((t) => (
-          <button
+          <div
             key={t}
-            onClick={() => setTier(t)}
-            className={`flex-1 text-xs uppercase py-1 rounded border ${
+            className={`flex-1 text-xs uppercase py-1 rounded border text-center ${
               tier === t
                 ? "bg-accent/20 border-accent text-accent text-glow-cyan"
-                : "border-border text-muted-foreground hover:text-foreground"
+                : "border-border text-muted-foreground opacity-50"
             }`}
           >
             {t}
-          </button>
+          </div>
         ))}
       </div>
 
