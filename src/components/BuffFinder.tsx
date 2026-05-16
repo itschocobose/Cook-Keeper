@@ -5,6 +5,7 @@ import {
   categorize,
   formatEffect,
   ING,
+  isGolden,
   type Ingredient,
   type ParsedEffect,
 } from "@/lib/cooking";
