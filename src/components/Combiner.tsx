@@ -137,7 +137,7 @@ export function Combiner() {
         <Slot ing={b} onClear={() => setB(null)} />
       </div>
 
-      {/* tier indicator (auto-determined by ingredient rarity) */}
+      {/* tier indicator (auto-determined by ingredient rarity; clickable when Master Chef >= 1) */}
       <div className="flex gap-1 mb-4">
         {(["regular", "rare", "epic"] as Tier[]).map((t) => {
           const active = hasRecipe && tier === t;
@@ -147,15 +147,25 @@ export function Combiner() {
               : t === "rare"
                 ? "bg-[#3b93ff]/20 border-[#3b93ff] text-[#3b93ff]"
                 : "bg-[#d145c2]/20 border-[#d145c2] text-[#d145c2]";
+          const baseClass = `flex-1 text-xs uppercase py-1 rounded border text-center transition-all ${
+            active ? colorClass : "border-border text-muted-foreground opacity-50"
+          }`;
+          if (!canOverrideTier) {
+            return (
+              <div key={t} className={baseClass}>
+                {t}
+              </div>
+            );
+          }
           return (
-            <div
+            <button
               key={t}
-              className={`flex-1 text-xs uppercase py-1 rounded border text-center transition-all ${
-                active ? colorClass : "border-border text-muted-foreground opacity-50"
-              }`}
+              type="button"
+              onClick={() => setTierOverride(t === autoTier ? null : t)}
+              className={`${baseClass} cursor-pointer hover:opacity-100`}
             >
               {t}
-            </div>
+            </button>
           );
         })}
       </div>
