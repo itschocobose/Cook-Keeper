@@ -39,8 +39,13 @@ export function Combiner() {
 
   const result = useMemo(() => {
     if (!a || !b) return null;
-    return combine(a.parsed[tier], b.parsed[tier]);
-  }, [a, b, tier]);
+    const combined = combine(a.parsed[tier], b.parsed[tier]);
+    if (nutrientLevel === 0) return combined;
+    const mult = 1 + 0.1 * nutrientLevel;
+    return combined.map((e) =>
+      e.immunity || e.value === 0 ? e : { ...e, value: e.value * mult }
+    );
+  }, [a, b, tier, nutrientLevel]);
 
   const pickSlot = (i: Ingredient) => {
     if (!a) setA(i);
