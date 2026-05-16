@@ -28,7 +28,7 @@ import { Search, ArrowRight } from "lucide-react";
 export function Combiner() {
   const [a, setA] = useState<Ingredient | null>(null);
   const [b, setB] = useState<Ingredient | null>(null);
-  const [tier, setTier] = useState<Tier>("regular");
+  
   const [q, setQ] = useState("");
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
   const [nutrientLevel, setNutrientLevel] = useState(0);
