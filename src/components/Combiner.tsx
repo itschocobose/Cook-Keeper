@@ -9,6 +9,11 @@ import {
   combine,
   formatEffect,
 } from "@/lib/cooking";
+import { getRarity } from "@/lib/ingredientRarity";
+
+function isGoldenOrLegendary(name: string): boolean {
+  return name.startsWith("Golden ") || getRarity(name) === "Legendary";
+}
 import { getDishName } from "@/lib/dishNames";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
