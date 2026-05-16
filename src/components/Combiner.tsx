@@ -46,7 +46,10 @@ export function Combiner() {
 
   const aGolden = a ? isGoldenOrLegendary(a.name) : false;
   const bGolden = b ? isGoldenOrLegendary(b.name) : false;
-  const tier: Tier = aGolden || bGolden ? "rare" : "regular";
+  const autoTier: Tier = aGolden || bGolden ? "rare" : "regular";
+  const [tierOverride, setTierOverride] = useState<Tier | null>(null);
+  const canOverrideTier = chefLevel >= 1;
+  const tier: Tier = canOverrideTier && tierOverride ? tierOverride : autoTier;
   const bothGolden = aGolden && bGolden;
   const hasRecipe = !!(a && b);
 
