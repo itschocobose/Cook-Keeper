@@ -43,21 +43,27 @@ export function Combiner() {
     });
   }, [q, activeCat]);
 
+  const aGolden = a ? isGoldenOrLegendary(a.name) : false;
+  const bGolden = b ? isGoldenOrLegendary(b.name) : false;
+  const tier: Tier = aGolden || bGolden ? "rare" : "regular";
+  const bothGolden = aGolden && bGolden;
+
   const result = useMemo(() => {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
     const hasVeg =
       ingredientCategory(a.name) === "Plant" ||
       ingredientCategory(b.name) === "Plant";
-    const pct = 0.05 * nutrientLevel + (hasVeg ? 0.05 * vegLevel : 0);
-    if (pct === 0) return combined;
-    const mult = 1 + pct;
-    return combined.map((e) =>
-      e.key.toLowerCase() === "food" && !e.immunity
-        ? { ...e, value: e.value * mult }
-        : e
-    );
-  }, [a, b, tier, nutrientLevel, vegLevel]);
+    const foodPct = 0.05 * nutrientLevel + (hasVeg ? 0.05 * vegLevel : 0);
+    const goldenMult = bothGolden ? 1.15 : 1;
+    if (foodPct === 0 && goldenMult === 1) return combined;
+    return combined.map((e) => {
+      if (e.immunity) return e;
+      const isFood = e.key.toLowerCase() === "food";
+      const mult = goldenMult * (isFood ? 1 + foodPct : 1);
+      return mult === 1 ? e : { ...e, value: e.value * mult };
+    });
+  }, [a, b, tier, nutrientLevel, vegLevel, bothGolden]);
 
   const pickSlot = (i: Ingredient) => {
     if (!a) setA(i);
