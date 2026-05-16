@@ -43,7 +43,9 @@ export function Combiner() {
     if (nutrientLevel === 0) return combined;
     const mult = 1 + 0.1 * nutrientLevel;
     return combined.map((e) =>
-      e.immunity || e.value === 0 ? e : { ...e, value: e.value * mult }
+      e.key.toLowerCase() === "food" && !e.immunity
+        ? { ...e, value: e.value * mult }
+        : e
     );
   }, [a, b, tier, nutrientLevel]);
 
@@ -136,7 +138,7 @@ export function Combiner() {
         <div className="text-xs">
           <div className="text-foreground">Utilizing Every Nutrient</div>
           <div className="text-muted-foreground">
-            +{nutrientLevel * 10}% to buff values
+            +{nutrientLevel * 10}% to food value
           </div>
         </div>
         <div className="flex items-center gap-2">
