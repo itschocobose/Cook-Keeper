@@ -49,6 +49,15 @@ function RarityBadge({ name }: { name: string }) {
   );
 }
 
+function GoldenBadge({ name }: { name: string }) {
+  if (!isGolden(name)) return null;
+  return (
+    <span className="text-[10px] px-1.5 py-0.5 rounded border text-amber-400 border-amber-500/40 bg-amber-500/10">
+      Golden
+    </span>
+  );
+}
+
 function RarityPicker({
   label,
   value,
