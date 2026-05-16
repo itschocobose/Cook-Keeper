@@ -189,6 +189,7 @@ function Slot({ ing, onClear }: { ing: Ingredient | null; onClear: () => void })
           <span className="text-xs truncate max-w-full px-1 group-hover:text-destructive">
             {ing.name}
           </span>
+          <GoldenBadge name={ing.name} />
         </>
       ) : (
         <span className="text-xs text-muted-foreground">Empty</span>
