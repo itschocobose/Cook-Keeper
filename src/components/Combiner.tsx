@@ -33,6 +33,7 @@ export function Combiner() {
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
   const [nutrientLevel, setNutrientLevel] = useState(0);
   const [vegLevel, setVegLevel] = useState(0);
+  const [chefLevel, setChefLevel] = useState(0);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
@@ -183,6 +184,19 @@ export function Combiner() {
             </TooltipTrigger>
             <TooltipContent side="top" className="text-xs">
               Provides +{vegLevel * 5}% to food value when a vegetable is used
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setChefLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Master Chef {chefLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Adds +{chefLevel * 5}% chance for increased rarity of dish
             </TooltipContent>
           </Tooltip>
         </div>
