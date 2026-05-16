@@ -9,6 +9,11 @@ import {
   combine,
   formatEffect,
 } from "@/lib/cooking";
+import { getRarity } from "@/lib/ingredientRarity";
+
+function isGoldenOrLegendary(name: string): boolean {
+  return name.startsWith("Golden ") || getRarity(name) === "Legendary";
+}
 import { getDishName } from "@/lib/dishNames";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
@@ -23,7 +28,7 @@ import { Search, ArrowRight } from "lucide-react";
 export function Combiner() {
   const [a, setA] = useState<Ingredient | null>(null);
   const [b, setB] = useState<Ingredient | null>(null);
-  const [tier, setTier] = useState<Tier>("regular");
+  
   const [q, setQ] = useState("");
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
   const [nutrientLevel, setNutrientLevel] = useState(0);
@@ -38,21 +43,27 @@ export function Combiner() {
     });
   }, [q, activeCat]);
 
+  const aGolden = a ? isGoldenOrLegendary(a.name) : false;
+  const bGolden = b ? isGoldenOrLegendary(b.name) : false;
+  const tier: Tier = aGolden || bGolden ? "rare" : "regular";
+  const bothGolden = aGolden && bGolden;
+
   const result = useMemo(() => {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
     const hasVeg =
       ingredientCategory(a.name) === "Plant" ||
       ingredientCategory(b.name) === "Plant";
-    const pct = 0.05 * nutrientLevel + (hasVeg ? 0.05 * vegLevel : 0);
-    if (pct === 0) return combined;
-    const mult = 1 + pct;
-    return combined.map((e) =>
-      e.key.toLowerCase() === "food" && !e.immunity
-        ? { ...e, value: e.value * mult }
-        : e
-    );
-  }, [a, b, tier, nutrientLevel, vegLevel]);
+    const foodPct = 0.05 * nutrientLevel + (hasVeg ? 0.05 * vegLevel : 0);
+    const goldenMult = bothGolden ? 1.15 : 1;
+    if (foodPct === 0 && goldenMult === 1) return combined;
+    return combined.map((e) => {
+      if (e.immunity) return e;
+      const isFood = e.key.toLowerCase() === "food";
+      const mult = goldenMult * (isFood ? 1 + foodPct : 1);
+      return mult === 1 ? e : { ...e, value: e.value * mult };
+    });
+  }, [a, b, tier, nutrientLevel, vegLevel, bothGolden]);
 
   const pickSlot = (i: Ingredient) => {
     if (!a) setA(i);
@@ -121,20 +132,19 @@ export function Combiner() {
         <Slot ing={b} onClear={() => setB(null)} />
       </div>
 
-      {/* tier picker */}
+      {/* tier indicator (auto-determined by ingredient rarity) */}
       <div className="flex gap-1 mb-4">
         {(["regular", "rare", "epic"] as Tier[]).map((t) => (
-          <button
+          <div
             key={t}
-            onClick={() => setTier(t)}
-            className={`flex-1 text-xs uppercase py-1 rounded border ${
+            className={`flex-1 text-xs uppercase py-1 rounded border text-center ${
               tier === t
                 ? "bg-accent/20 border-accent text-accent text-glow-cyan"
-                : "border-border text-muted-foreground hover:text-foreground"
+                : "border-border text-muted-foreground opacity-50"
             }`}
           >
             {t}
-          </button>
+          </div>
         ))}
       </div>
 
