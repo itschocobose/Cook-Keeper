@@ -41,7 +41,7 @@ export function Combiner() {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
     if (nutrientLevel === 0) return combined;
-    const mult = 1 + 0.1 * nutrientLevel;
+    const mult = 1 + 0.05 * nutrientLevel;
     return combined.map((e) =>
       e.key.toLowerCase() === "food" && !e.immunity
         ? { ...e, value: e.value * mult }
