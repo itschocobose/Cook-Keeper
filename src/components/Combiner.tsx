@@ -27,6 +27,7 @@ export function Combiner() {
   const [q, setQ] = useState("");
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
   const [nutrientLevel, setNutrientLevel] = useState(0);
+  const [vegLevel, setVegLevel] = useState(0);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
@@ -40,14 +41,18 @@ export function Combiner() {
   const result = useMemo(() => {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
-    if (nutrientLevel === 0) return combined;
-    const mult = 1 + 0.05 * nutrientLevel;
+    const hasVeg =
+      ingredientCategory(a.name) === "Plant" ||
+      ingredientCategory(b.name) === "Plant";
+    const pct = 0.05 * nutrientLevel + (hasVeg ? 0.05 * vegLevel : 0);
+    if (pct === 0) return combined;
+    const mult = 1 + pct;
     return combined.map((e) =>
       e.key.toLowerCase() === "food" && !e.immunity
         ? { ...e, value: e.value * mult }
         : e
     );
-  }, [a, b, tier, nutrientLevel]);
+  }, [a, b, tier, nutrientLevel, vegLevel]);
 
   const pickSlot = (i: Ingredient) => {
     if (!a) setA(i);
