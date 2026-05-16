@@ -10,6 +10,7 @@ import {
   formatEffect,
 } from "@/lib/cooking";
 import { getDishName } from "@/lib/dishNames";
+import { getRarity } from "@/lib/ingredientRarity";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
 import {
