@@ -134,19 +134,21 @@ export function Combiner() {
       </div>
 
       {/* Utilizing Every Nutrient skill */}
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <button
-            onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
-            className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors text-left"
-          >
-            {nutrientLevel}/5
-          </button>
-        </TooltipTrigger>
-        <TooltipContent side="top" className="text-xs">
-          Utilizing Every Nutrient — +{nutrientLevel * 5}% to food value
-        </TooltipContent>
-      </Tooltip>
+      <TooltipProvider delayDuration={150}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <button
+              onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
+              className="text-xs px-2 py-1 mb-4 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+            >
+              {nutrientLevel}/5
+            </button>
+          </TooltipTrigger>
+          <TooltipContent side="top" className="text-xs">
+            Utilizing Every Nutrient — +{nutrientLevel * 5}% to food value
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
 
       <div className="border-t border-border pt-3">
         <div className="text-xs uppercase tracking-wider text-accent text-glow-cyan mb-2 flex items-center gap-1">
