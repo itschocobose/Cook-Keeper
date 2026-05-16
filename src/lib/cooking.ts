@@ -1,9 +1,5 @@
 import rawData from "@/data/ingredients.json";
 
-export function isGolden(name: string): boolean {
-  return name.includes("Golden");
-}
-
 export type Tier = "regular" | "rare" | "epic";
 
 export interface RawIngredient {
