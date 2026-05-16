@@ -47,6 +47,7 @@ export function Combiner() {
   const bGolden = b ? isGoldenOrLegendary(b.name) : false;
   const tier: Tier = aGolden || bGolden ? "rare" : "regular";
   const bothGolden = aGolden && bGolden;
+  const hasRecipe = !!(a && b);
 
   const result = useMemo(() => {
     if (!a || !b) return null;
