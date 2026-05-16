@@ -131,6 +131,37 @@ export function Combiner() {
         ))}
       </div>
 
+      {/* Utilizing Every Nutrient skill */}
+      <div className="flex items-center justify-between gap-2 mb-4 p-2 rounded border border-border bg-secondary/30">
+        <div className="text-xs">
+          <div className="text-foreground">Utilizing Every Nutrient</div>
+          <div className="text-muted-foreground">
+            +{nutrientLevel * 10}% to buff values
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setNutrientLevel((l) => Math.max(0, l - 1))}
+            disabled={nutrientLevel === 0}
+            className="w-6 h-6 rounded border border-border text-sm hover:border-primary/60 disabled:opacity-30 disabled:hover:border-border"
+            aria-label="Decrease level"
+          >
+            −
+          </button>
+          <span className="text-sm tabular-nums text-primary text-glow font-semibold w-8 text-center">
+            {nutrientLevel}/5
+          </span>
+          <button
+            onClick={() => setNutrientLevel((l) => Math.min(5, l + 1))}
+            disabled={nutrientLevel === 5}
+            className="w-6 h-6 rounded border border-border text-sm hover:border-primary/60 disabled:opacity-30 disabled:hover:border-border"
+            aria-label="Increase level"
+          >
+            +
+          </button>
+        </div>
+      </div>
+
       <div className="border-t border-border pt-3">
         <div className="text-xs uppercase tracking-wider text-accent text-glow-cyan mb-2 flex items-center gap-1">
           <ArrowRight className="w-3 h-3" /> Result
