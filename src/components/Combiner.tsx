@@ -138,21 +138,36 @@ export function Combiner() {
         ))}
       </div>
 
-      {/* Utilizing Every Nutrient skill */}
+      {/* Skill buttons */}
       <TooltipProvider delayDuration={150}>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <button
-              onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
-              className="text-xs px-2 py-1 mb-4 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
-            >
-              Utilizing Every Nutrient {nutrientLevel}/5
-            </button>
-          </TooltipTrigger>
-          <TooltipContent side="top" className="text-xs">
-            Provides +{nutrientLevel * 5}% to food value
-          </TooltipContent>
-        </Tooltip>
+        <div className="flex flex-col items-start gap-2 mb-4">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Utilizing Every Nutrient {nutrientLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Provides +{nutrientLevel * 5}% to food value
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setVegLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Eat Your Vegetables {vegLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Provides +{vegLevel * 5}% to food value when a vegetable is used
+            </TooltipContent>
+          </Tooltip>
+        </div>
       </TooltipProvider>
 
       <div className="border-t border-border pt-3">
