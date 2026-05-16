@@ -138,7 +138,7 @@ export function Combiner() {
         <div className="text-xs">
           <div className="text-foreground">Utilizing Every Nutrient</div>
           <div className="text-muted-foreground">
-            +{nutrientLevel * 10}% to food value
+            +{nutrientLevel * 5}% to food value
           </div>
         </div>
         <div className="flex items-center gap-2">
