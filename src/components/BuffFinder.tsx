@@ -3,8 +3,10 @@ import {
   ALL_BUFF_KEYS,
   BUFF_CATEGORIES,
   categorize,
-  findRecipesForBuffs,
   formatEffect,
+  ING,
+  type Ingredient,
+  type ParsedEffect,
 } from "@/lib/cooking";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
@@ -22,45 +24,11 @@ function titleCase(s: string) {
   return s.replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-const PAGE_SIZE = 5;
+const PAGE_SIZE = 10;
 
 type SortMode = "default" | "desc" | "asc";
 type RarityPick = "default" | Rarity;
 const RARITY_PICKS: Rarity[] = ["Common", "Uncommon", "Rare", "Epic", "Legendary"];
-
-function SortGroup({
-  label,
-  value,
-  onChange,
-  options,
-}: {
-  label: string;
-  value: string;
-  onChange: (v: string) => void;
-  options: [string, string][];
-}) {
-  return (
-    <div className="flex items-center gap-1">
-      <span className="text-muted-foreground">{label}:</span>
-      {options.map(([mode, text]) => {
-        const on = value === mode;
-        return (
-          <button
-            key={mode}
-            onClick={() => onChange(mode)}
-            className={`px-2 py-1 rounded border transition-all ${
-              on
-                ? "bg-primary/20 border-primary text-primary text-glow"
-                : "border-border text-muted-foreground hover:text-foreground hover:border-primary/60"
-            }`}
-          >
-            {text}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
 
 const RARITY_TONE: Record<string, string> = {
   Common: "text-muted-foreground border-border",
@@ -97,7 +65,7 @@ function RarityPicker({
           <SelectValue placeholder="Sort by..." />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="default">Sort by...</SelectItem>
+          <SelectItem value="default">All rarities</SelectItem>
           {RARITY_PICKS.map((r) => (
             <SelectItem key={r} value={r}>
               {r}
@@ -109,12 +77,40 @@ function RarityPicker({
   );
 }
 
+interface IngredientMatch {
+  ing: Ingredient;
+  effects: ParsedEffect[];
+  matchCount: number;
+}
+
+function findIngredientsForBuffs(wantedKeys: string[]): {
+  results: IngredientMatch[];
+  matchAll: boolean;
+} {
+  if (wantedKeys.length === 0) return { results: [], matchAll: true };
+  const wanted = new Set(wantedKeys);
+
+  const scored: IngredientMatch[] = ING.map((ing) => {
+    const effects = ing.parsed.regular;
+    const matchCount = effects.reduce(
+      (n, e) => (wanted.has(e.key) ? n + 1 : n),
+      0
+    );
+    return { ing, effects, matchCount };
+  }).filter((m) => m.matchCount > 0);
+
+  const matchAllResults = scored.filter((m) => m.matchCount === wanted.size);
+  const matchAll = matchAllResults.length > 0 || wanted.size <= 1;
+  const results = matchAll ? matchAllResults : scored;
+  results.sort((a, b) => b.matchCount - a.matchCount || a.ing.name.localeCompare(b.ing.name));
+  return { results, matchAll };
+}
+
 export function BuffFinder() {
   const [selected, setSelected] = useState<string[]>([]);
   const [page, setPage] = useState(0);
   const [sortMode, setSortMode] = useState<SortMode>("default");
-  const [raritySortA, setRaritySortA] = useState<RarityPick>("default");
-  const [raritySortB, setRaritySortB] = useState<RarityPick>("default");
+  const [raritySort, setRaritySort] = useState<RarityPick>("default");
 
   const [query, setQuery] = useState("");
   const [activeCat, setActiveCat] = useState<string>("");
@@ -138,29 +134,22 @@ export function BuffFinder() {
     }).sort();
   }, [query, activeCat]);
 
-  // Try Match-all first; if it yields nothing, fall back to Any-of.
-  const { results, matchAll } = useMemo(() => {
-    const all = findRecipesForBuffs(selected, true);
-    if (all.length > 0 || selected.length <= 1) {
-      return { results: all, matchAll: true };
-    }
-    return { results: findRecipesForBuffs(selected, false), matchAll: false };
-  }, [selected]);
-
+  const { results, matchAll } = useMemo(
+    () => findIngredientsForBuffs(selected),
+    [selected]
+  );
 
   const toggle = (k: string) => {
     setPage(0);
     setSelected((s) => (s.includes(k) ? s.filter((x) => x !== k) : [...s, k]));
   };
 
-  const relevantTotal = (effects: { key: string; value: number }[]) =>
+  const relevantTotal = (effects: ParsedEffect[]) =>
     effects.reduce((sum, e) => (selected.includes(e.key) ? sum + e.value : sum), 0);
 
   const sortedResults = useMemo(() => {
-    // Filter by rarity picks: matching ingredient slot must equal the picked rarity.
     const filtered = results.filter((r) => {
-      if (raritySortA !== "default" && getRarity(r.a.name) !== raritySortA) return false;
-      if (raritySortB !== "default" && getRarity(r.b.name) !== raritySortB) return false;
+      if (raritySort !== "default" && getRarity(r.ing.name) !== raritySort) return false;
       return true;
     });
     if (sortMode === "default") return filtered;
@@ -173,7 +162,7 @@ export function BuffFinder() {
     });
     return arr.map((x) => x.r);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results, sortMode, raritySortA, raritySortB, selected]);
+  }, [results, sortMode, raritySort, selected]);
 
   const totalPages = Math.max(1, Math.ceil(sortedResults.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages - 1);
@@ -190,7 +179,9 @@ export function BuffFinder() {
         {selected.length > 0 && (
           <div className="flex items-center gap-2 mb-4 text-sm">
             <span className="text-xs text-muted-foreground">
-              {matchAll ? "Matching all selected buffs" : "No exact match — showing any-of results"}
+              {matchAll
+                ? "Ingredients providing all selected buffs"
+                : "No single ingredient provides all — showing any-of matches"}
             </span>
             <button
               onClick={() => setSelected([])}
@@ -286,7 +277,7 @@ export function BuffFinder() {
         {selected.length === 0 ? null : results.length === 0 ? (
           <div className="panel p-10 text-center">
             <p className="text-muted-foreground">
-              No recipe combines all of those buffs. Try switching to <em className="text-accent">Any of</em>.
+              No ingredient provides those buffs.
             </p>
           </div>
         ) : (
@@ -294,9 +285,9 @@ export function BuffFinder() {
             <div className="mb-3 space-y-2">
               <div className="text-sm text-muted-foreground">
                 Showing {currentPage * PAGE_SIZE + 1}–
-                {currentPage * PAGE_SIZE + pageResults.length} of {sortedResults.length} recipe
+                {currentPage * PAGE_SIZE + pageResults.length} of {sortedResults.length} ingredient
                 {sortedResults.length === 1 ? "" : "s"}
-                {matchAll ? " matching all buffs" : " matching at least one buff"}.
+                {matchAll ? " providing all buffs" : " providing at least one buff"}.
               </div>
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs">
                 <div className="flex items-center gap-2">
@@ -319,18 +310,10 @@ export function BuffFinder() {
                   </Select>
                 </div>
                 <RarityPicker
-                  label="Ingredient 1 rarity"
-                  value={raritySortA}
+                  label="Rarity"
+                  value={raritySort}
                   onChange={(v) => {
-                    setRaritySortA(v);
-                    setPage(0);
-                  }}
-                />
-                <RarityPicker
-                  label="Ingredient 2 rarity"
-                  value={raritySortB}
-                  onChange={(v) => {
-                    setRaritySortB(v);
+                    setRaritySort(v);
                     setPage(0);
                   }}
                 />
@@ -341,15 +324,9 @@ export function BuffFinder() {
                 <li key={idx} className="panel p-4">
                   <div className="flex flex-wrap items-center gap-3 mb-3">
                     <div className="flex items-center gap-2">
-                      <IngredientIcon ing={r.a} />
-                      <span className="text-foreground">{r.a.name}</span>
-                      <RarityBadge name={r.a.name} />
-                    </div>
-                    <span className="text-primary text-glow font-bold">+</span>
-                    <div className="flex items-center gap-2">
-                      <IngredientIcon ing={r.b} />
-                      <span className="text-foreground">{r.b.name}</span>
-                      <RarityBadge name={r.b.name} />
+                      <IngredientIcon ing={r.ing} />
+                      <span className="text-foreground">{r.ing.name}</span>
+                      <RarityBadge name={r.ing.name} />
                     </div>
                     {!matchAll && (
                       <span className="ml-auto text-xs px-2 py-0.5 rounded bg-accent/20 text-accent border border-accent/40">
