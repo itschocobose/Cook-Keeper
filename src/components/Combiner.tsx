@@ -47,6 +47,7 @@ export function Combiner() {
   const bGolden = b ? isGoldenOrLegendary(b.name) : false;
   const tier: Tier = aGolden || bGolden ? "rare" : "regular";
   const bothGolden = aGolden && bGolden;
+  const hasRecipe = !!(a && b);
 
   const result = useMemo(() => {
     if (!a || !b) return null;
@@ -135,7 +136,7 @@ export function Combiner() {
       {/* tier indicator (auto-determined by ingredient rarity) */}
       <div className="flex gap-1 mb-4">
         {(["regular", "rare", "epic"] as Tier[]).map((t) => {
-          const active = tier === t;
+          const active = hasRecipe && tier === t;
           const colorClass =
             t === "regular"
               ? "bg-[#42cb5a]/20 border-[#42cb5a] text-[#42cb5a]"
