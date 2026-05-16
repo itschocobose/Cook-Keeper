@@ -1,3 +1,7 @@
+export function isGolden(name: string): boolean {
+  return name.includes("Golden");
+}
+
 import rawData from "@/data/ingredients.json";
 
 export type Tier = "regular" | "rare" | "epic";
