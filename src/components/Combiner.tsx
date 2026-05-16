@@ -33,6 +33,7 @@ export function Combiner() {
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
   const [nutrientLevel, setNutrientLevel] = useState(0);
   const [vegLevel, setVegLevel] = useState(0);
+  const [chefLevel, setChefLevel] = useState(0);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
