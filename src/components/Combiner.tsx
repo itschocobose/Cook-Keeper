@@ -26,6 +26,7 @@ export function Combiner() {
   const [tier, setTier] = useState<Tier>("regular");
   const [q, setQ] = useState("");
   const [activeCat, setActiveCat] = useState<IngredientCategory | "">("");
+  const [nutrientLevel, setNutrientLevel] = useState(0);
 
   const filtered = useMemo(() => {
     const s = q.trim().toLowerCase();
