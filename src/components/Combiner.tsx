@@ -134,18 +134,25 @@ export function Combiner() {
 
       {/* tier indicator (auto-determined by ingredient rarity) */}
       <div className="flex gap-1 mb-4">
-        {(["regular", "rare", "epic"] as Tier[]).map((t) => (
-          <div
-            key={t}
-            className={`flex-1 text-xs uppercase py-1 rounded border text-center ${
-              tier === t
-                ? "bg-accent/20 border-accent text-accent text-glow-cyan"
-                : "border-border text-muted-foreground opacity-50"
-            }`}
-          >
-            {t}
-          </div>
-        ))}
+        {(["regular", "rare", "epic"] as Tier[]).map((t) => {
+          const active = tier === t;
+          const colorClass =
+            t === "regular"
+              ? "bg-[#42cb5a]/20 border-[#42cb5a] text-[#42cb5a]"
+              : t === "rare"
+                ? "bg-[#3b93ff]/20 border-[#3b93ff] text-[#3b93ff]"
+                : "bg-[#d145c2]/20 border-[#d145c2] text-[#d145c2]";
+          return (
+            <div
+              key={t}
+              className={`flex-1 text-xs uppercase py-1 rounded border text-center transition-all ${
+                active ? colorClass : "border-border text-muted-foreground opacity-50"
+              }`}
+            >
+              {t}
+            </div>
+          );
+        })}
       </div>
 
       {/* Skill buttons */}
