@@ -233,6 +233,7 @@ function IngredientTile({
         >
           <IngredientIcon ing={ing} size={32} />
           <span className="text-sm truncate">{ing.name}</span>
+          <GoldenBadge name={ing.name} />
         </button>
       </TooltipTrigger>
       <TooltipContent
