@@ -144,6 +144,11 @@ export function Combiner() {
           <div className="text-foreground">Utilizing Every Nutrient</div>
           <div className="text-muted-foreground">
             +{nutrientLevel * 5}% to food value
+            {a && b &&
+              ((a.name.includes("Golden") || getRarity(a.name) === "Legendary") &&
+                (b.name.includes("Golden") || getRarity(b.name) === "Legendary")) && (
+                <span className="text-accent">, +15% golden/legendary bonus</span>
+              )}
           </div>
         </div>
         <div className="flex items-center gap-2">
