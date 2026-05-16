@@ -10,7 +10,6 @@ import {
   formatEffect,
 } from "@/lib/cooking";
 import { getDishName } from "@/lib/dishNames";
-import { getRarity } from "@/lib/ingredientRarity";
 import { IngredientIcon } from "./IngredientIcon";
 import { Input } from "@/components/ui/input";
 import {
@@ -41,15 +40,11 @@ export function Combiner() {
   const result = useMemo(() => {
     if (!a || !b) return null;
     const combined = combine(a.parsed[tier], b.parsed[tier]);
-    const bothHighTier =
-      (a.name.includes("Golden") || getRarity(a.name) === "Legendary") &&
-      (b.name.includes("Golden") || getRarity(b.name) === "Legendary");
-    const nutrientMult = 1 + 0.05 * nutrientLevel;
-    const bonusMult = bothHighTier ? 1.15 : 1;
-    const totalMult = nutrientMult * bonusMult;
+    if (nutrientLevel === 0) return combined;
+    const mult = 1 + 0.05 * nutrientLevel;
     return combined.map((e) =>
       e.key.toLowerCase() === "food" && !e.immunity
-        ? { ...e, value: e.value * totalMult }
+        ? { ...e, value: e.value * mult }
         : e
     );
   }, [a, b, tier, nutrientLevel]);
@@ -144,11 +139,6 @@ export function Combiner() {
           <div className="text-foreground">Utilizing Every Nutrient</div>
           <div className="text-muted-foreground">
             +{nutrientLevel * 5}% to food value
-            {a && b &&
-              ((a.name.includes("Golden") || getRarity(a.name) === "Legendary") &&
-                (b.name.includes("Golden") || getRarity(b.name) === "Legendary")) && (
-                <span className="text-accent">, +15% golden/legendary bonus</span>
-              )}
           </div>
         </div>
         <div className="flex items-center gap-2">
