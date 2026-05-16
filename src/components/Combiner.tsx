@@ -3,6 +3,7 @@ import {
   ING,
   INGREDIENT_CATEGORIES,
   ingredientCategory,
+  isGolden,
   type Ingredient,
   type IngredientCategory,
   type Tier,
