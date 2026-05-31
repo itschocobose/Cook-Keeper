@@ -335,7 +335,7 @@ export function BuffFinder() {
                       </span>
                     )}
                   </div>
-                  <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                  <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
                     {r.effects.map((e, i) => {
                       const matched = selected.includes(e.key);
                       return (
