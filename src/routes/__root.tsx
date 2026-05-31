@@ -9,6 +9,8 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { Toaster } from "@/components/ui/sonner";
+import { FeedbackButton } from "@/components/FeedbackButton";
 
 function NotFoundComponent() {
   return (
@@ -142,6 +144,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <footer className="relative z-10 mt-12 mb-8 flex justify-center">
+        <FeedbackButton />
+      </footer>
+      <Toaster />
     </QueryClientProvider>
   );
 }
