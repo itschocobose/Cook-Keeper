@@ -10,7 +10,8 @@ Live site: https://cookkeeper.lovable.app
 - **Cooking Pot** — Combine any two ingredients to preview the cooked dish, including its icon, canonical name (when known), and the full combined effect list. Hover an ingredient for a tooltip showing the buffs it provides at the selected tier.
 - **What's New popover** — Bell icon in the header opens a popover listing the 3 most recent updates. A pulsing dot indicates unseen entries (tracked in `localStorage` under `cookkeeper:lastSeenChangelogId`). Full history at `/changelog`. Edit `src/lib/changelog.ts` to add entries — new ones go at the TOP of the array with a unique `id`.
 - **Effect engine** — Parses raw effect strings into structured buffs (value, percent, duration, permanent max-health, immunities) and applies Core Keeper's combine rules (max value per buff, additive permanent max-health, immunity union).
-- **Feedback button** — Footer button on every page opens an anonymous suggestion dialog (`src/components/FeedbackButton.tsx`, mounted in `src/routes/__root.tsx`). Submissions go to the `public.feedback` table in Lovable Cloud. Read them in the Cloud dashboard → Tables → `feedback` (sorted newest-first). No PII is collected from users; `user_agent` is stored only for spam triage. 5-second client-side cooldown via `localStorage` key `feedback:lastSubmittedAt`.
+- **Feedback button** — Footer button on every page opens an anonymous suggestion dialog (`src/components/FeedbackButton.tsx`, mounted in `src/routes/__root.tsx`). Submissions go to the `public.feedback` table in Lovable Cloud. Read them on the `/admin` page (sorted newest-first). No PII is collected from users; `user_agent` is stored only for spam triage. 5-second client-side cooldown via `localStorage` key `feedback:lastSubmittedAt`.
+- **Admin page (`/admin`)** — Email+password-gated dashboard that lists submitted feedback (with delete) and shows the same changelog entries displayed on the public `/changelog`. Access is granted by having a row in `public.user_roles` with `role='admin'`. To bootstrap the first admin: visit `/login`, create an account, then in the Cloud dashboard insert a row into `user_roles` with your `user_id` (from `auth.users`) and `role='admin'`.
 
 ## Tech Stack
 
@@ -69,7 +70,15 @@ Ingredient and effect data is sourced from [corekeeper.atma.gg](https://corekeep
 
 ## Backend (Lovable Cloud)
 
-One table: `public.feedback` (`id`, `message` 10–1000 chars, `user_agent`, `created_at`). RLS allows anonymous INSERTs only; SELECT/UPDATE/DELETE are service-role only, so submissions are private to the dev. Read via the Cloud dashboard.
+Three tables:
+
+- **`public.feedback`** (`id`, `message` 10–1000 chars, `user_agent`, `created_at`) — Anonymous INSERTs allowed; SELECT/DELETE restricted to admins via RLS using `has_role(auth.uid(), 'admin')`.
+- **`public.user_roles`** (`id`, `user_id` → `auth.users`, `role`: `'admin' | 'user'`, `created_at`) — Roles live in their own table to avoid privilege-escalation patterns. Each user can SELECT only their own rows.
+- **`auth.users`** — Managed by Lovable Cloud Auth (email + password). Auto-confirm is enabled and leaked-password (HIBP) check is on.
+
+Helper: SECURITY DEFINER function `public.has_role(_user_id uuid, _role app_role)` returns boolean. EXECUTE granted only to `authenticated`. Used inside RLS policies and from the `/admin` page's client check.
+
+**Bootstrapping the first admin:** Sign up at `/login`, then in the Cloud dashboard run an INSERT into `user_roles` setting your `user_id` (from `auth.users`) and `role='admin'`. After that, `/admin` will load for you.
 
 ## Disclaimer
 
