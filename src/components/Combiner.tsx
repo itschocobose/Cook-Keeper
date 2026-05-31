@@ -239,7 +239,7 @@ export function Combiner() {
                 </div>
               </div>
             )}
-            <ul className="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+            <ul className="space-y-1 text-sm">
               {result.map((e, i) => (
                 <li
                   key={i}
