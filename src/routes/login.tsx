@@ -19,7 +19,6 @@ export const Route = createFileRoute("/login")({
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -30,14 +29,10 @@ function LoginPage() {
     setError(null);
     setSubmitting(true);
 
-    const { error: authError } =
-      mode === "signin"
-        ? await supabase.auth.signInWithPassword({ email, password })
-        : await supabase.auth.signUp({
-            email,
-            password,
-            options: { emailRedirectTo: `${window.location.origin}/admin` },
-          });
+    const { error: authError } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
 
     setSubmitting(false);
 
@@ -46,7 +41,7 @@ function LoginPage() {
       return;
     }
 
-    toast.success(mode === "signin" ? "Signed in" : "Account created");
+    toast.success("Signed in");
     navigate({ to: "/admin" });
   }
 
@@ -68,9 +63,7 @@ function LoginPage() {
         </Link>
 
         <div className="panel p-6">
-          <h2 className="font-display text-base text-primary mb-1">
-            {mode === "signin" ? "Admin Sign In" : "Create Admin Account"}
-          </h2>
+          <h2 className="font-display text-base text-primary mb-1">Admin Sign In</h2>
           <p className="text-sm text-muted-foreground mb-6">
             Restricted area. Submitted feedback and changelog management.
           </p>
@@ -96,46 +89,16 @@ function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 minLength={8}
-                autoComplete={mode === "signin" ? "current-password" : "new-password"}
+                autoComplete="current-password"
               />
             </div>
 
             {error && <p className="text-sm text-destructive">{error}</p>}
 
             <Button type="submit" disabled={submitting} className="w-full">
-              {submitting
-                ? "Working..."
-                : mode === "signin"
-                  ? "Sign in"
-                  : "Create account"}
+              {submitting ? "Working..." : "Sign in"}
             </Button>
           </form>
-
-          <div className="mt-4 text-center text-sm text-muted-foreground">
-            {mode === "signin" ? (
-              <button
-                type="button"
-                onClick={() => {
-                  setError(null);
-                  setMode("signup");
-                }}
-                className="underline hover:text-foreground"
-              >
-                Need an account? Sign up
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => {
-                  setError(null);
-                  setMode("signin");
-                }}
-                className="underline hover:text-foreground"
-              >
-                Already have an account? Sign in
-              </button>
-            )}
-          </div>
         </div>
       </main>
     </div>
