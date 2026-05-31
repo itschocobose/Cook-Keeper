@@ -172,7 +172,7 @@ export function Combiner() {
 
       {/* Skill buttons */}
       <TooltipProvider delayDuration={150}>
-        <div className="flex flex-col items-start gap-2 mb-4">
+        <div className="flex flex-wrap gap-2 mb-4">
           <Tooltip>
             <TooltipTrigger asChild>
               <button
