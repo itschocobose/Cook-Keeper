@@ -152,8 +152,8 @@ function RootComponent() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
-          filter: "blur(20%)",
-          WebkitFilter: "blur(20%)",
+          filter: "blur(8px)",
+          WebkitFilter: "blur(8px)",
         }}
       />
       <Outlet />
