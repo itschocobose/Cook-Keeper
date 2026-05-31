@@ -110,6 +110,51 @@ export function Combiner() {
         })}
       </div>
 
+      {/* Skill buttons */}
+      <TooltipProvider delayDuration={150}>
+        <div className="flex flex-wrap gap-2 mb-4">
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Utilizing Every Nutrient {nutrientLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Provides +{nutrientLevel * 5}% to food value
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setVegLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Eat Your Vegetables {vegLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Provides +{vegLevel * 5}% to food value when a vegetable is used
+            </TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <button
+                onClick={() => setChefLevel((l) => (l >= 5 ? 0 : l + 1))}
+                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
+              >
+                Master Chef {chefLevel}/5
+              </button>
+            </TooltipTrigger>
+            <TooltipContent side="top" className="text-xs">
+              Adds +{chefLevel * 5}% chance for increased rarity of dish
+            </TooltipContent>
+          </Tooltip>
+        </div>
+      </TooltipProvider>
+
       {(activeCat || q.trim()) && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 mb-4">
           <TooltipProvider delayDuration={150}>
@@ -169,51 +214,6 @@ export function Combiner() {
           );
         })}
       </div>
-
-      {/* Skill buttons */}
-      <TooltipProvider delayDuration={150}>
-        <div className="flex flex-wrap gap-2 mb-4">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                onClick={() => setNutrientLevel((l) => (l >= 5 ? 0 : l + 1))}
-                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
-              >
-                Utilizing Every Nutrient {nutrientLevel}/5
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" className="text-xs">
-              Provides +{nutrientLevel * 5}% to food value
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                onClick={() => setVegLevel((l) => (l >= 5 ? 0 : l + 1))}
-                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
-              >
-                Eat Your Vegetables {vegLevel}/5
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" className="text-xs">
-              Provides +{vegLevel * 5}% to food value when a vegetable is used
-            </TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                onClick={() => setChefLevel((l) => (l >= 5 ? 0 : l + 1))}
-                className="text-xs px-2 py-1 rounded border border-border bg-secondary/30 hover:border-primary/60 transition-colors"
-              >
-                Master Chef {chefLevel}/5
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="top" className="text-xs">
-              Adds +{chefLevel * 5}% chance for increased rarity of dish
-            </TooltipContent>
-          </Tooltip>
-        </div>
-      </TooltipProvider>
 
       <div className="border-t border-border pt-3">
         <div className="text-xs uppercase tracking-wider text-accent text-glow-cyan mb-2 flex items-center gap-1">
