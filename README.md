@@ -10,6 +10,7 @@ Live site: https://cookkeeper.lovable.app
 - **Cooking Pot** — Combine any two ingredients to preview the cooked dish, including its icon, canonical name (when known), and the full combined effect list. Hover an ingredient for a tooltip showing the buffs it provides at the selected tier.
 - **What's New popover** — Bell icon in the header opens a popover listing the 3 most recent updates. A pulsing dot indicates unseen entries (tracked in `localStorage` under `cookkeeper:lastSeenChangelogId`). Full history at `/changelog`. Edit `src/lib/changelog.ts` to add entries — new ones go at the TOP of the array with a unique `id`.
 - **Effect engine** — Parses raw effect strings into structured buffs (value, percent, duration, permanent max-health, immunities) and applies Core Keeper's combine rules (max value per buff, additive permanent max-health, immunity union).
+- **Feedback button** — Footer button on every page opens an anonymous suggestion dialog (`src/components/FeedbackButton.tsx`, mounted in `src/routes/__root.tsx`). Submissions go to the `public.feedback` table in Lovable Cloud. Read them in the Cloud dashboard → Tables → `feedback` (sorted newest-first). No PII is collected from users; `user_agent` is stored only for spam triage. 5-second client-side cooldown via `localStorage` key `feedback:lastSubmittedAt`.
 
 ## Tech Stack
 
@@ -65,6 +66,10 @@ Keys are the two ingredient names sorted alphabetically and joined with ` + ` (u
 ## Data Source
 
 Ingredient and effect data is sourced from [corekeeper.atma.gg](https://corekeeper.atma.gg/en/Cooking).
+
+## Backend (Lovable Cloud)
+
+One table: `public.feedback` (`id`, `message` 10–1000 chars, `user_agent`, `created_at`). RLS allows anonymous INSERTs only; SELECT/UPDATE/DELETE are service-role only, so submissions are private to the dev. Read via the Cloud dashboard.
 
 ## Disclaimer
 
