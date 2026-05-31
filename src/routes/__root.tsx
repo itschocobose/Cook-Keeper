@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import bgImage from "../assets/bg-cave.jpg";
 
 function NotFoundComponent() {
   return (
@@ -142,20 +141,6 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div
-        aria-hidden="true"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: -1,
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          filter: "blur(8px)",
-          WebkitFilter: "blur(8px)",
-        }}
-      />
       <Outlet />
     </QueryClientProvider>
   );
