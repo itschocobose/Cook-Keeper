@@ -53,11 +53,11 @@ function Index() {
         <div className="inline-flex items-center gap-3 mb-3">
           <ChefHat className="w-8 h-8 text-primary text-glow" />
           <h1 className="text-2xl sm:text-3xl text-primary text-glow">
-            Cook Keeper — A Core Keeper Tool
+            Cook Keeper
           </h1>
         </div>
         <p className="text-muted-foreground max-w-xl mx-auto">
-          Keeping track of buffs is hard. Cooking shouldn't be!
+          A Core Keeper Tool
         </p>
       </header>
 
