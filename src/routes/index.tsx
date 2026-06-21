@@ -66,7 +66,7 @@ function Index() {
         <Combiner />
       </main>
 
-      <footer className="text-center text-xs text-muted-foreground pb-6 px-4">
+      <footer className="text-center text-xs text-muted-foreground pb-6 px-4 whitespace-pre-wrap">
         Data sourced from{" "}
         <a
           href="https://corekeeper.atma.gg/en/Cooking"
@@ -76,7 +76,8 @@ function Index() {
         >
           corekeeper.atma.gg
         </a>{" "}
-        · Fan-made tool, not affiliated with Pugstorm.
+        and loads of trial and erorr{"\n\n"}
+        Fan-made tool, not affiliated with Pugstorm.{"\n"}
       </footer>
     </div>
   );
