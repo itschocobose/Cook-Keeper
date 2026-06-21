@@ -50,9 +50,9 @@ function Index() {
         <div className="absolute right-4 sm:right-8 top-10">
           <WhatsNew />
         </div>
-        <div className="inline-flex items-center gap-3 mb-3">
-          <ChefHat className="w-8 h-8 text-primary text-glow" />
-          <h1 className="text-2xl sm:text-3xl text-primary text-glow">
+        <div className="inline-flex items-center gap-4 mb-4">
+          <ChefHat className="w-10 h-10 text-primary text-glow" />
+          <h1 className="text-3xl sm:text-4xl text-primary text-glow">
             Cook Keeper
           </h1>
         </div>
