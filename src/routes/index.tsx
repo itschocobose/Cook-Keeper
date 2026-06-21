@@ -46,24 +46,26 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="relative z-10 min-h-screen">
-      <header className="relative px-4 sm:px-8 pt-10 pb-6 text-center">
+      <header className="relative px-4 sm:px-8 pt-10 pb-6 text-left">
         <div className="absolute right-4 sm:right-8 top-10">
           <WhatsNew />
         </div>
-        <div className="inline-flex items-end gap-4 mb-4">
-          <img
-            src={coreIcon.url}
-            alt="Cook Keeper"
-            className="w-16 h-16"
-            style={{ imageRendering: "pixelated" }}
-          />
-          <div className="text-left">
-            <h1 className="text-3xl sm:text-4xl text-primary text-glow">
-              Cook Keeper
-            </h1>
-            <p className="text-muted-foreground">
-              A Core Keeper Tool
-            </p>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-end gap-4 mb-4">
+            <img
+              src={coreIcon.url}
+              alt="Cook Keeper"
+              className="w-[55px] h-[55px]"
+              style={{ imageRendering: "pixelated" }}
+            />
+            <div className="text-left">
+              <h1 className="text-3xl sm:text-4xl text-primary text-glow">
+                Cook Keeper
+              </h1>
+              <p className="text-muted-foreground">
+                A Core Keeper Tool
+              </p>
+            </div>
           </div>
         </div>
       </header>
