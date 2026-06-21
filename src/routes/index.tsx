@@ -51,7 +51,7 @@ function Index() {
           <WhatsNew />
         </div>
         <div className="inline-flex items-center gap-4 mb-4">
-          <img src={coreIcon.url} alt="Cook Keeper" className="w-12 h-12" style={{ imageRendering: "pixelated" }} />
+          <img src={coreIcon.url} alt="Cook Keeper" className="w-32 h-32" style={{ imageRendering: "pixelated" }} />
           <h1 className="text-3xl sm:text-4xl text-primary text-glow">
             Cook Keeper
           </h1>
