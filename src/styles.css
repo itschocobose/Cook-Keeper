@@ -31,8 +31,8 @@
   --color-glow: var(--glow);
   --color-amber-glow: var(--amber-glow);
   --color-cyan-glow: var(--cyan-glow);
-  --font-pixel: "VT323", ui-monospace, monospace;
-  --font-display: "Press Start 2P", ui-monospace, monospace;
+  --font-pixel: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
