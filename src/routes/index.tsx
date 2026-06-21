@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { BuffFinder } from "@/components/BuffFinder";
 import { Combiner } from "@/components/Combiner";
 import { WhatsNew } from "@/components/WhatsNew";
-import { ChefHat } from "lucide-react";
+import coreIcon from "@/assets/core-startup.webp.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -51,7 +51,7 @@ function Index() {
           <WhatsNew />
         </div>
         <div className="inline-flex items-center gap-4 mb-4">
-          <ChefHat className="w-10 h-10 text-primary text-glow" />
+          <img src={coreIcon.url} alt="Cook Keeper" className="w-12 h-12" style={{ imageRendering: "pixelated" }} />
           <h1 className="text-3xl sm:text-4xl text-primary text-glow">
             Cook Keeper
           </h1>
