@@ -50,15 +50,22 @@ function Index() {
         <div className="absolute right-4 sm:right-8 top-10">
           <WhatsNew />
         </div>
-        <div className="inline-flex items-center gap-4 mb-4">
-          <img src={coreIcon.url} alt="Cook Keeper" className="w-32 h-32" style={{ imageRendering: "pixelated" }} />
-          <h1 className="text-3xl sm:text-4xl text-primary text-glow">
-            Cook Keeper
-          </h1>
+        <div className="inline-flex items-end gap-4 mb-4">
+          <img
+            src={coreIcon.url}
+            alt="Cook Keeper"
+            className="w-16 h-16"
+            style={{ imageRendering: "pixelated" }}
+          />
+          <div className="text-left">
+            <h1 className="text-3xl sm:text-4xl text-primary text-glow">
+              Cook Keeper
+            </h1>
+            <p className="text-muted-foreground">
+              A Core Keeper Tool
+            </p>
+          </div>
         </div>
-        <p className="text-muted-foreground max-w-xl mx-auto">
-          A Core Keeper Tool
-        </p>
       </header>
 
       <main className="px-4 sm:px-8 pb-16 max-w-7xl mx-auto space-y-10">
